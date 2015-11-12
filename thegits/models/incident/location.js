@@ -7,14 +7,14 @@ var lawEnfIncidentSchema = new mongoose.Schema({
     incidentId: {
         type: Number,
         index: true
-        },
+    },
     cityCrewId: Number,
     supervisor: String,
     graffitiInfo: String,
     dateOnSite: {
         type: Date,
         index: true
-        },
+    },
     scale: Number,
     typeOfBuilding:	String,
     crossStreet: locationSchema,
@@ -23,6 +23,6 @@ var lawEnfIncidentSchema = new mongoose.Schema({
     images: [Schema.Types.ObjectId],
     suspects: [reportSuspectSchema],
     Status:String
-    });
+});
 
 mongoose.model('lawEnfIncident', lawEnfIncidentSchema);
