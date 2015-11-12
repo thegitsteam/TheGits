@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-require('./models/citycrew');
-require('./models/admin');
-require('./models/lawenforcement');
+require('./models/users/citycrew');
+require('./models/users/admin');
+require('./models/users/lawenforcement');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
