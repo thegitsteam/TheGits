@@ -41,8 +41,8 @@ app.use(stormpath.init(app, {
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/report',reports);
-app.use('incidents',incidents);
+app.use('/reports',reports);
+app.use('/incidents',incidents);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
