@@ -34,15 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(stormpath.init(app, {
-  website: true,
-
-}));
+app.use(stormpath.init(app,require('./config/stormpath-config')));
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/reports',reports);
-app.use('/incidents',incidents);
+app.use('/users',stormpath.loginrequired, users);
+app.use('/reports',stormpath.loginrequired,reports);
+app.use('/incidents',stormpath.loginrequired,incidents);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
