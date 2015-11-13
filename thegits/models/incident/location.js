@@ -3,26 +3,11 @@
  */
 var mongoose = require('mongoose');
 
-var lawEnfIncidentSchema = new mongoose.Schema({
-    incidentId: {
-        type: Number,
-        index: true
-    },
-    cityCrewId: Number,
-    supervisor: String,
-    graffitiInfo: String,
-    dateOnSite: {
-        type: Date,
-        index: true
-    },
-    scale: Number,
-    typeOfBuilding:	String,
-    crossStreet: locationSchema,
-    gpsCoord: incidentGpsSchema,
-    moniker: String,
-    images: [Schema.Types.ObjectId],
-    suspects: [reportSuspectSchema],
-    Status:String
+var locationSchema = new mongoose.Schema({
+    address: String,
+    zip: String,
+    street1: String,
+    street2: String
 });
 
-mongoose.model('lawEnfIncident', lawEnfIncidentSchema);
+mongoose.model('location', locationSchema);
