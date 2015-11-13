@@ -15,6 +15,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var reports = require('./routes/reports');
 var incidents = require('./routes/incidents');
+var suspect = require('./routes/suspects');
 
 var app = express();
 
@@ -37,9 +38,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(stormpath.init(app,require('./config/stormpath-config')));
 
 app.use('/', routes);
-app.use('/users',stormpath.loginrequired, users);
-app.use('/reports',stormpath.loginrequired,reports);
-app.use('/incidents',stormpath.loginrequired,incidents);
+app.use('/users',stormpath.loginRequired, users);
+app.use('/reports',stormpath.loginRequired,reports);
+app.use('/incidents',stormpath.loginRequired,incidents);
+app.use('/suspects',stormpath.loginRequired,suspect);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
