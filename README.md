@@ -19,6 +19,7 @@ Finally, visit the wiki on Taiga to grab the API Keys, and follow the instructio
 
 
 Writing new features:
+
 1. Always pull from master first to get the most up-to-date code
     git pull origin master
 
