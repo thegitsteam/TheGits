@@ -1,0 +1,1 @@
+angular.module('gitsApp.services', []);
