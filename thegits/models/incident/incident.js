@@ -4,12 +4,10 @@
 var mongoose = require('mongoose');
 
 var lawEnfIncidentSchema = new mongoose.Schema({
-    incidentId: {
-        type: Number,
-        index: true
-    },
     cityCrewId: Number,
-    supervisor: String,
+    lawEnfEmpNr: Number,
+    cityCrewSupervisor: Number,
+    lawEnfSupervisor: Number,
     graffitiInfo: String,
     dateOnSite: {
         type: Date,
@@ -17,21 +15,17 @@ var lawEnfIncidentSchema = new mongoose.Schema({
     },
     scale: Number,
     typeOfBuilding:	String,
-    crossStreet: LocationSchema,
-    gpsCoord: IncidentGpsSchema,
+    location: locationSchema,
+    gpsCoord: incidentGpsSchema,
     moniker: String,
     images: [Schema.Types.ObjectId],
-    suspects: [reportSuspectSchema],
-    Status:String
+    suspects: [{ type: Schema.Types.ObjectId, ref: 'suspect'}],
+    Status: String
 });
 
 var cityCrewIncidentSchema = new mongoose.Schema({
-        IncidentId: {
-            type: Number,
-            index: true
-        },
         cityCrewId: Number,
-        supervisor: String,
+        cityCrewSupervisor: String,
         graffitiInfo: String,
         dateOnSite: {
             type: Date,
@@ -40,10 +34,11 @@ var cityCrewIncidentSchema = new mongoose.Schema({
         scale: Number,
         typeOfBuilding: String,
         address: String,
-        crossStreet: locationSchema,
-        gpsCoord: IncidentGpsSchema,
+        location: locationSchema,
+        gpsCoord: incidentGpsSchema,
         moniker: String,
         images: [Schema.Types.ObjectId]
 });
 
-mongoose.model('cityCrewIncident', cityCrewIncidentSchema);
+mongoose.model('cityCrewIncident', cityCrewIncidentSchema, 'incident');
+mongoose.model('lawEnfIncident', lawEnfIncidentSchema, 'incident');

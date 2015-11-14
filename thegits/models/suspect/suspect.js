@@ -12,10 +12,3 @@ var suspectSchema = new Schema({
 });
 
 mongoose.model('suspect', suspectSchema);
-
-var suspectNameSchema = new Schema({
-    first:                String,
-    initial:             String,
-    last:                String,
-    aliases :          [String]
-});

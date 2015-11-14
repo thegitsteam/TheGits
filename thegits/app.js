@@ -5,19 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//Database dependencies
-require('./models/users/citycrew');
-require('./models/users/admin');
-require('./models/users/lawenforcement');
-require('./models/incident/lawenforcement');
-require('./models/incident/citycrew');
-require('./models/incident/location');
-require('./models/incident/incidentgps');
-require('./models/report/report');
-require('./models/suspect/incidentsuspect');
-require('./models/suspect/suspect');
-require('./models/suspect/suspectname');
-
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
