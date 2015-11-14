@@ -7,9 +7,6 @@ var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var config = require('./config/config');
 
-require('./models/citycrew');
-require('./models/admin');
-require('./models/lawenforcement');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
