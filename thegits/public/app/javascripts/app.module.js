@@ -10,12 +10,19 @@ app.config([
     '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
         $stateProvider
-        .state('main', {
+        .state('home', {
             url: '/home',
             templateUrl: '/app/javascripts/templates/main.html',
             controller: 'MainCtrl'
+        })
+
+        .state('register', {
+            url: '/register',
+            templateUrl: '/app/javascripts/templates/registration.html',
+            controller: 'RegistrationCtrl'
         });
-        $urlRouterProvider.otherwise('main');
+
+        $urlRouterProvider.otherwise('home');
     }
 ]);
 
