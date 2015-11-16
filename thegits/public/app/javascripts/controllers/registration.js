@@ -1,7 +1,8 @@
 angular.module('gitsApp.controllers')
 .controller('RegistrationCtrl', [
     '$scope',
-    function($scope) {
+    'admin',
+    function($scope, admin) {
         $scope.setAccountType = function() {
             var accountType = $('#accountType option:selected').val();
             if (accountType !== 'Admin') {
@@ -117,7 +118,9 @@ angular.module('gitsApp.controllers')
             user.employeeNumber = $scope.employeeNumber;
             user.password = $scope.password;
 
-            alert(JSON.stringify(user));
+            if (user.accountType === 'Admin') {
+                admin.create(user);
+            }
         }
     }
 ]);
