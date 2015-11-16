@@ -15,6 +15,9 @@ var stormpath_config = {
     logout:{
       enabled:true
     }
+  },
+  expand:{
+    customData:true
   }
 
 };
