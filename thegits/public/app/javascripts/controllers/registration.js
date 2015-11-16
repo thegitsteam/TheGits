@@ -49,6 +49,14 @@ angular.module('gitsApp.controllers')
             $scope.password = $('#password').val();
         };
 
+        $scope.getDeleteID = function() {
+            $scope.deleteID = $('#userToDelete').val();
+        };
+
+        $scope.deleteUser = function() {
+            admin.delete($scope.deleteID);
+        };
+
         $scope.registerUser = function() {
             var hasError = false;
             
