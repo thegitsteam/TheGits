@@ -14,6 +14,7 @@ var users = require('./routes/users');
 var reports = require('./routes/reports');
 var incidents = require('./routes/incidents');
 var suspect = require('./routes/suspects');
+var stormpath_route = require('./routes/stormpath');
 
 var app = express();
 
@@ -40,7 +41,7 @@ app.use('/users',stormpath.loginRequired, users);
 app.use('/reports',stormpath.loginRequired,reports);
 app.use('/incidents',stormpath.loginRequired,incidents);
 app.use('/suspects',stormpath.loginRequired,suspect);
-
+app.use('/stormpath',stormpath_route);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
