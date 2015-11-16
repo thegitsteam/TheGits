@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var config = require('./config/config');
 
-var report = require('./models/report/report');
+//var report = require('./models/report/report');
 var mongoose = require('mongoose');
 
 var routes = require('./routes/index');
@@ -38,8 +38,8 @@ app.use(config.stormpathConfig(app));
 
 app.use('/', routes);
 app.use('/users',stormpath.loginRequired, users);
-//app.use('/reports',stormpath.loginRequired,reports);
-app.use('/reports',reports);
+app.use('/reports',stormpath.loginRequired,reports);
+//app.use('/reports',reports);
 app.use('/incidents',stormpath.loginRequired,incidents);
 app.use('/suspects',stormpath.loginRequired,suspect);
 

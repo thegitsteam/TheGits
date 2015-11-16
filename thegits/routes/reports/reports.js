@@ -4,7 +4,16 @@ var mongoose = require('mongoose');
 require('../../models/report/report');
 var Report = mongoose.model('report');
 
-router.get('/addreport/:desc/:loc',function(req,res){
+
+router.get('/',function(req,res){
+	res.send('getting reports');
+});
+
+router.post('/',function(req,res){
+	res.send('creating new report');
+});
+
+router.post('/addreport/:desc/:loc',function(req,res){
 	//res.send('getting all reports. this should be supervisor only');
 	var d = new Date();
 
@@ -27,14 +36,6 @@ newreport.save( function(error, data){
 
 });
 
-router.get('/',function(req,res){
-	res.send('getting reports');
-});
-
-router.post('/',function(req,res){
-	res.send('creating new report');
-});
-
 router.get('/:id',function(req,res){
 	//var Report = mongoose.model('report');
 	Report.findOne({ '_id': req.params.id }, function(error, report) {
@@ -47,6 +48,7 @@ router.get('/:id',function(req,res){
 		});
 });
 
+//Modifying location of report
 router.put('/:id/:location',function(req,res){
 	if(req.params.id){
 		//res.send('moedify specific report.' + req.params.id);	
