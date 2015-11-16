@@ -6,18 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var stormpath = require('express-stormpath');
 var config = require('./config/config');
+var routes = require('./routes/routes');
 
 var mongoose = require('mongoose');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var reports = require('./routes/reports');
-var incidents = require('./routes/incidents');
-var suspect = require('./routes/suspects');
-var stormpath_route = require('./routes/stormpath');
-
 var app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,14 +27,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//load stormpath configuration
 app.use(config.stormpathConfig(app));
 
-app.use('/', routes);
-app.use('/users',stormpath.loginRequired, users);
-app.use('/reports',stormpath.loginRequired,reports);
-app.use('/incidents',stormpath.loginRequired,incidents);
-app.use('/suspects',stormpath.loginRequired,suspect);
-app.use('/stormpath',stormpath_route);
+//load up all the routes listed in the routes.js file
+routes(app);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
