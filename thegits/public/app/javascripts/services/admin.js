@@ -1,5 +1,5 @@
 angular.module('gitsApp.services')
-.service('admin', [
+.factory('admin', [
 	'$http',
 	function($http) {
 		var admin = {};
@@ -8,6 +8,30 @@ angular.module('gitsApp.services')
 				alert(JSON.stringify(userData));
 			});
 		};
+
+		admin.delete = function(id) {
+			return $http.delete('/users/admin/' + id).success(function(data) {
+				alert('delete user: ' + id);
+			});
+		};
+
+		admin.edit = function(userData) {
+			return $http.put('/users/admin', userData).success(function(data) {
+				alert(JSON.stringify(userData));
+			});
+		};
+
+		admin.get = function(id) {
+			return $http.get('/users/admin/' + id).success(function(data) {
+				alert('get user: ' + id);
+			});
+		}
+
+		admin.getAll = function() {
+			return $http.get('/users/admin').success(function(data) {
+				alert('getAll');
+			});
+		}
 		return admin;
 	}
 ]);
