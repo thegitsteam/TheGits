@@ -15,19 +15,17 @@
     <!-- Angular Controllers -->
     <script src="/app/javascripts/controllers/app.controllers.js"></script>
     <script src="/app/javascripts/controllers/main.js"></script>
+    <script src="/app/javascripts/controllers/registration.js"></script>
 
     <!-- Angular Services -->
     <script src="/app/javascripts/services/app.services.js"></script>
+    <script src="/app/javascripts/services/admin.js"></script>
 
     <!-- Main Angular Module -->
     <script src="/app/javascripts/app.module.js"></script>
 </head>
 
-<body ng-app="gitsApp">
-    <div class="jumbotron">
-        <div class="col-md-6 col-md-offset-3">
-            <ui-view></ui-view>  
-        </div>
-    </div>
+<body ng-app="gitsApp" class="main">
+    <ui-view></ui-view> 
 </body>
 </html>

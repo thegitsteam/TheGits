@@ -1,5 +1,5 @@
-angular.module('gitsApp.controllers').
-controller('MainCtrl', [
+angular.module('gitsApp.controllers')
+.controller('MainCtrl', [
     '$scope',
     function($scope) {
         $scope.test = 'Hello World!';
