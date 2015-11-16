@@ -8,6 +8,7 @@ var stormpath = require('express-stormpath');
 var config = require('./config/config');
 var routes = require('./routes/routes');
 
+//var report = require('./models/report/report');
 var mongoose = require('mongoose');
 
 var app = express();
