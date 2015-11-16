@@ -26,7 +26,14 @@ app.config([
             url: '/login',
             templateUrl: '/app/javascripts/templates/login.html',
             controller: 'LoginCtrl'
+        })
+
+	.state('lawreporting', {
+            url: '/lawreporting',
+            templateUrl: '/app/javascripts/templates/lawreporting.html',
+            controller: 'LawReportingCtrl'
         });
+
 
         $urlRouterProvider.otherwise('home');
     }
