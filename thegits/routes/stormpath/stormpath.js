@@ -5,5 +5,5 @@ var stormpathController = require('../../controllers/stormpath/stormpath');
 var array = [];
 
 router.get('/groups',stormpathController.getAccountType);
-
+router.get('/account',stormpathController.getAcountInfo);
 module.exports = router;
