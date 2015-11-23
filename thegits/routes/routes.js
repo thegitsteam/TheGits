@@ -7,6 +7,6 @@ module.exports = function(app){
 	app.use('/reports',stormpath.loginRequired,require('./reports'));
 	app.use('/incidents',stormpath.loginRequired,require('./incidents'));
 	app.use('/suspects',stormpath.loginRequired,require('./suspects'));
-	app.use('/stormpath',stormpath.loginRequired,require('./stormpath'));
+	app.use('/stormpath',require('./stormpath'));
     //app.use('/reports',require('./reports'));
 };
