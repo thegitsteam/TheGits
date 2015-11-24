@@ -68,7 +68,6 @@ function getAppGroups(options,application,callback){
 	});
 };
 function createStormPathAccount(account,application){
-	console.log('create');
 	//return Q.nfcall(application.createAccount,account);
 	return Q.Promise(function(resolve,reject,notify){
 		application.createAccount(account,function(err,createdAccount){
@@ -96,8 +95,6 @@ function getGroupFromType(options,application){
 	});
 };
 function addAccountToGroup(createdAccount,group){
-	console.log(createdAccount);
-	//return Q.nfcall(createdAccount.addToGroup,group.href);
 	return Q.Promise(function(resolve,reject,notify){
 		createdAccount.addToGroup(group,function(err,membership){
 			if(err){
