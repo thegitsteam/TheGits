@@ -31,7 +31,7 @@ module.exports.createAccount = function(req,res) {
 	if(!req.body) res.sendStatus(400);
 	var account = {};
 	var application = req.app.get('stormpathApplication');
-	var userType =''; req.body.userType;
+	var userType =''; 
 	try{
 		account.username = req.body.username;
 		account.givenName = req.body.givenName;
@@ -60,42 +60,7 @@ module.exports.createAccount = function(req,res) {
 	.fail(function(err){
 		console.log(err);
 		res.sendStatus(400);
-	});
-	/*createStormPathAccount(account,application)
-	.then(function(createdAccount){
-		res.sendStatus(201);
-	})
-	.fail(function(err){
-		res.sendStatus(400);
-	});*/
-	/*createStormPathAccount(account,application).then(function(createdAccount){
-		console.log(createdAccount);
-		res.send(200);
-	}).fail(function(err){
-		console.log(err);
-		res.send(400);
-	});*/
-	/*application.createAccount(account, function(err, createdAccount) {
-		if(err){
-			res.status(400).send("Failed to Create Stormpath Account");
-			console.log(err);
-		} 
-		else{
-			console.log(createdAccount);
-			getAppGroups({name:account.customData.userType},application,function(err,group){
-				if(err){
-					res.sendStatus(400).send("Could not Assign to Account");
-				}
-				console.log(group.href);
-				createdAccount.addToGroup(group.href,function(err,membership){
-					console.log(membership);
-				});
-			});
-			res.sendStatus(201);
-		}
-
-	});*/
-	
+	});	
 };
 function getAppGroups(options,application,callback){
 	application.getGroups(options,function(err,groups){
