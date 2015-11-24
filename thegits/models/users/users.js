@@ -3,15 +3,21 @@
  */
 var mongoose = require('mongoose');
 
+var nameSchema = new Schema({
+    firstName: String,
+    middleName: String,
+    surname: String
+});
 
-var adminSchema = new mongoose.Schema({
+var userSchema = new mongoose.Schema({
     username: String,
     name: nameSchema,
     employeeNumber: Number,
     employeeTitle: String,
     href: String,
+    accountType: String,
     isSupervisor: Boolean,
-    accountType: String
+    supervisorID: Number
 });
 
-mongoose.model('admin', adminSchema);
+mongoose.model('user', userSchema);

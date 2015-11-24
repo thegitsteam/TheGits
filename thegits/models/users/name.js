@@ -4,10 +4,9 @@
 var mongoose = require('mongoose');
 
 var nameSchema = new Schema({
-    first: String,
-    initial: String,
-    last: String,
-    aliases: [String]
+    firstName: String,
+    middleName: String,
+    surname: String
 });
 
 mongoose.model('name', nameSchema);

@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var adminController = require('../../controllers/users/admin');
+var userController = require('../../controllers/users/users');
 
-router.post('/createUser/:username/:empnumber/:title',adminController.createAdmin);
+router.post('/createUser/:username/:empnumber/:title',userController.createUser);
 
-router.get('/:id',adminController.getAdmin);
+router.get('/:id',userController.getUser);
 
 router.get('/',function(req,res){
 	res.status(200);
