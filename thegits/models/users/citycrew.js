@@ -5,9 +5,13 @@ var mongoose = require('mongoose');
 
 var cityCrewWorkerSchema = new mongoose.Schema({
     username: String,
+    name: nameSchema,
     employeeNumber: Number,
-    title: String,
-    SupervisorID: Number
+    employeeTitle: String,
+    href: String,
+    accountType: String,
+    isSupervisor: Boolean,
+    supervisorID: Number
 });
 
 //Which methods should we hav efor the models?

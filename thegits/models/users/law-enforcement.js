@@ -5,8 +5,12 @@ var mongoose = require('mongoose');
 
 var lawEnfOffSchema = new mongoose.Schema({
     username: String,
+    name: nameSchema,
     employeeNumber: Number,
-    title: String,
+    employeeTitle: String,
+    href: String,
+    accountType: String,
+    isSupervisor: Boolean,
     supervisorID: Number
 });
 
