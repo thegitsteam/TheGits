@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var userController = require('../../controllers/users/users');
+//var userController = require('../../controllers/users/users');
 
-router.post('/createUser/:username/:empnumber/:title',userController.createUser);
+//router.post('/createUser/:username/:empnumber/:title',userController.createUser);
 
-router.get('/:id',userController.getUser);
+//router.get('/:id',userController.getUser);
 
 router.get('/',function(req,res){
 	res.status(200);

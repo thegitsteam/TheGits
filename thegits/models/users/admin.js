@@ -2,6 +2,7 @@
  * Created by MajaEngvall on 15-11-12.
  */
 var mongoose = require('mongoose');
+var nameSchema = require('./name');
 
 
 var adminSchema = new mongoose.Schema({
@@ -14,4 +15,4 @@ var adminSchema = new mongoose.Schema({
     accountType: String
 });
 
-mongoose.model('admin', adminSchema);
+module.exports = mongoose.model('admin', adminSchema);

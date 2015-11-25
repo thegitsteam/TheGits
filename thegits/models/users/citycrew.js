@@ -2,6 +2,7 @@
  * Created by MajaEngvall on 15-11-12.
  */
 var mongoose = require('mongoose');
+var nameSchema = require('./name');
 
 var cityCrewWorkerSchema = new mongoose.Schema({
     username: String,
@@ -16,4 +17,4 @@ var cityCrewWorkerSchema = new mongoose.Schema({
 
 //Which methods should we hav efor the models?
 
-mongoose.model('cityCrewWorker', cityCrewWorkerSchema);
+module.exports = mongoose.model('cityCrewWorker', cityCrewWorkerSchema);

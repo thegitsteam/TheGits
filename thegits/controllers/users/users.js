@@ -1,6 +1,12 @@
 var express = require('express');
 var stormpath = require('express-stormpath');
 var Q = require('q');
+var mongoose = ('mongoose');
+var City = require('../../models/users/citycrew');
+var Admin = require('../../models/users/admin');
+var Law = require('../../models/users/law-enforcement');
+var User = require('../../models/users/users');
+
 module.exports.getAcountInfo = function(req,res){
 	var userInfo = {};
 	var userGroups = [];
@@ -28,38 +34,24 @@ module.exports.getAcountInfo = function(req,res){
 	});
 };
 module.exports.createAccount = function(req,res) {
-	if(!req.body) res.sendStatus(400);
-	var account = {};
+	if(!req.account) res.sendStatus(400);
+	var account = req.account;
 	var application = req.app.get('stormpathApplication');
-	var userType =''; 
-	try{
-		account.username = req.body.username;
-		account.givenName = req.body.firstName;
-		account.middleName = req.body.middleInitial;
-		account.surname = req.body.lastName;
-		account.email = req.body.email;
-		account.password = req.body.password;
-		account.customData ={};
-		account.customData.isSupervisor =req.body.isSupervisor;
-		account.customData.employeeTitle = req.body.employeeTitle;
-		account.customData.employeeNumber = req.body.employeeNumber;
-		account.customData.userType = req.body.accountType;
-		console.log(JSON.stringify(account));
-	}
-	catch(err){
-		console.log(err);
-		res.status(400).send("Bad Req");
-	}
-	
-	Q.all([createStormPathAccount(account,application),getGroupFromType({name:account.customData.userType}, application)])
-	.spread(addAccountToGroup)
+	var stormpathAccountPromise = createStormPathAccount(account,application);
+	var stormpathGroupPromise = getGroupFromType({name:account.customData.userType},application);
+	var stormpathPromise = Q.all([stormpathAccountPromise,stormpathGroupPromise]);
+	stormpathPromise.spread(addAccountToGroup)
 	.then(function(href){
 		console.log(href);
-		res.sendStatus(201);
+		account.href = href;
+		return createMongoUserPromise(account);
+	})
+	.then(function(data){
+		res.status(201).send('created account');
 	})
 	.fail(function(err){
 		console.log(err);
-		res.sendStatus(400);
+		res.status(400).send(err.userMessage);
 	});	
 };
 function getAppGroups(options,application,callback){
@@ -72,7 +64,6 @@ function createStormPathAccount(account,application){
 	return Q.Promise(function(resolve,reject,notify){
 		application.createAccount(account,function(err,createdAccount){
 			if (err) {
-				console.log(err);
 				reject(err);
 			}
 			else{
@@ -106,4 +97,77 @@ function addAccountToGroup(createdAccount,group){
 		});
 	});
 };
+
+function createMongoUserPromise(account){
+	return Q.Promise(function(resolve,reject,notify){
+		createMongoUser(account,function(err,data){
+			if(err){
+				console.log(err);
+				reject(err);
+			}
+			else{
+				resolve(data);
+			}
+		});
+	});
+}
+createMongoUser = function(account,callback){
+	var UserType;
+    
+	console.log(account.customData.userType);
+    if (account.customData.userType=='Admin') {
+        UserType=Admin;
+    }
+    else if (account.customData.userType=='Law') {
+        UserType=Law;
+    }
+    else {
+        UserType=City;
+    }
+    
+    var nameUser = {
+    firstName: account.givenName,
+    middleName: account.middleName,
+    surname: account.surname
+    };
+
+    var user = {
+    username: account.username,
+    name: nameUser,
+    employeeNumber: account.customData.employeeNumber,
+    employeeTitle: account.customData.employeeTitle,
+    href: account.href,
+    accountType: account.customData.accountType,
+    isSupervisor: account.customData.isSupervisor,
+    supervisorID: account.customData.supervisorID
+    };
+
+    var newUser = new UserType(user);
+
+    newUser.save( function(error, data){
+    if(error){
+        callback(error);
+    }
+    else{
+        callback(null,data);
+    }
+    });
+
+};
+
+/*module.exports.getUser = function(req,res){
+	if(req.params.id){
+		UserType.findOne({ '_id': req.params.id }, function(error, report) {
+            if(error){
+                res.json(error);
+            }
+            else{
+                res.json(report)
+        }
+        });
+	}
+	else{
+		res.send('no id');
+	}
+}*/
 

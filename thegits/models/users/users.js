@@ -2,12 +2,7 @@
  * Created by MajaEngvall on 15-11-12.
  */
 var mongoose = require('mongoose');
-
-var nameSchema = new Schema({
-    firstName: String,
-    middleName: String,
-    surname: String
-});
+var nameSchema = require('./name');
 
 var userSchema = new mongoose.Schema({
     username: String,
@@ -20,4 +15,4 @@ var userSchema = new mongoose.Schema({
     supervisorID: Number
 });
 
-mongoose.model('user', userSchema);
+module.exports = mongoose.model('user', userSchema);
