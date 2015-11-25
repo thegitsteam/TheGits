@@ -12,8 +12,15 @@ app.config([
         $stateProvider
         .state('home', {
             url: '/home',
-            templateUrl: '/app/javascripts/templates/main.html',
-            controller: 'MainCtrl'
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/main.html',
+                    controller: 'MainCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                }
+            }
         })
 
         .state('register', {
