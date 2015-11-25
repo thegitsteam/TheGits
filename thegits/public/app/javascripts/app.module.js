@@ -25,20 +25,41 @@ app.config([
 
         .state('register', {
             url: '/register',
-            templateUrl: '/app/javascripts/templates/registration.html',
-            controller: 'RegistrationCtrl'
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/registration.html',
+                    controller: 'RegistrationCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                }
+            }
         })
 
-	.state('login', {
+    	.state('login', {
             url: '/login',
-            templateUrl: '/app/javascripts/templates/login.html',
-            controller: 'LoginCtrl'
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/login.html',
+                    controller: 'LoginCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                }
+            }
         })
 
-	.state('lawreporting', {
+    	.state('lawreporting', {
             url: '/lawreporting',
-            templateUrl: '/app/javascripts/templates/lawreporting.html',
-            controller: 'LawReportingCtrl'
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/lawreporting.html',
+                    controller: 'LawReportingCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                }
+            }
         });
 
 
