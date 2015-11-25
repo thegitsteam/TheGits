@@ -19,6 +19,7 @@ app.config([
                 },
                 'navigation-bar': {
                     templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
                 }
             }
         })
@@ -32,6 +33,7 @@ app.config([
                 },
                 'navigation-bar': {
                     templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
                 }
             }
         })
@@ -45,6 +47,7 @@ app.config([
                 },
                 'navigation-bar': {
                     templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
                 }
             }
         })
@@ -58,6 +61,7 @@ app.config([
                 },
                 'navigation-bar': {
                     templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
                 }
             }
         });
