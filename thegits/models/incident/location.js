@@ -10,4 +10,4 @@ var locationSchema = new mongoose.Schema({
     street2: String
 });
 
-mongoose.model('location', locationSchema);
+module.exports = mongoose.model('location', locationSchema);

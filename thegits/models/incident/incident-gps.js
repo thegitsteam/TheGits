@@ -10,5 +10,5 @@ var incidentGpsSchema = new mongoose.Schema({
     }
 });
 
-mongoose.model('incidentGps', incidentGpsSchema);
+module.exports = mongoose.model('incidentGps', incidentGpsSchema);
 

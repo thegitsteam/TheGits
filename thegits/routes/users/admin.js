@@ -1,20 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-//var adminController = require('../../controllers/users/admin');
-
-//router.post('/createUser/:username/:empnumber/:title',adminController.createAdmin);
-
-//router.get('/:id',adminController.getAdmin);
+var stormpath = require('express-stormpath');
+var userContoller = require('../../controllers/users/users');
+var userMiddleware = require('./users-middleware');
 
 router.get('/',function(req,res){
 	res.status(200);
 	res.send('GET');
 });
-router.post('/',function(req,res){
-	res.status(200);
-	res.send('POST');
-});
+router.post('/',stormpath.groupsRequired(['Admin']),userMiddleware.getAcountInfo,userContoller.createAccount);
+
 router.get('/:id',function(req,res){
 	if(req.params.id){
 		res.status(200);

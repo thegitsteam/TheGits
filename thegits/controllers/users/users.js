@@ -5,7 +5,6 @@ var mongoose = ('mongoose');
 var City = require('../../models/users/citycrew');
 var Admin = require('../../models/users/admin');
 var Law = require('../../models/users/law-enforcement');
-var User = require('../../models/users/users');
 
 module.exports.getAcountInfo = function(req,res){
 	var userInfo = {};

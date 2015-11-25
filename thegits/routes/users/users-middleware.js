@@ -1,13 +1,4 @@
-var express = require('express');
-var router = express.Router();
-var stormpath = require('express-stormpath');
-var stormpathController = require('../../controllers/stormpath/stormpath');
-var tempcontroller = require('../../controllers/users/users');
-var array = [];
-
-router.get('/account',stormpathController.getAcountInfo);
-router.post('/create',getAccountFormInfo,tempcontroller.createAccount/*stormpathController.createAccount*/);
-function getAccountFormInfo(req,res,next){
+module.exports.getAcountInfo = function(req,res,next){
 	account = {};
 	try{
 		account.username = req.body.username;
@@ -28,4 +19,3 @@ function getAccountFormInfo(req,res,next){
 	req.account = account;
 	next();
 };
-module.exports = router;

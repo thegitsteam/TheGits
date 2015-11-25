@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var stormpath = require('express-stormpath');
-
+var usersContoller = require('../../controllers/users/users');
 router.use('/citycrew',stormpath.groupsRequired(['Admin','City'],false),require('./citycrew'));
 //router.use('/citycrew',require('./citycrew'));
 router.use('/law',stormpath.groupsRequired(['Admin','Law'],false),require('./law'));
 //router.use('/law',require('./law'));
-//router.use('/admin',stormpath.groupsRequired(['Admin']),require('./admin'));
-router.use('/admin',require('./admin'));
+router.use('/admin',stormpath.groupsRequired(['Admin']),require('./admin'));
+//router.use('/admin',require('./admin'));
+router.get('/',usersContoller.getAcountInfo);
 module.exports = router;

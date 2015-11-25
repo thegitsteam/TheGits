@@ -1,7 +1,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
-require('../../models/report/report');
-var Report = mongoose.model('report');
+
+var Report = require('../../models/report/report');
 
 module.exports.createReport = function(req,res){
 	//res.send('getting all reports. this should be supervisor only');

@@ -2,7 +2,8 @@
  * Created by MajaEngvall on 15-11-12.
  */
 var mongoose = require('mongoose');
-
+var incidentGpsSchema = require('incident-gps');
+var locationSchema = require
 var lawEnfIncidentSchema = new mongoose.Schema({
     cityCrewId: Number,
     lawEnfEmpNr: Number,
@@ -40,5 +41,5 @@ var cityCrewIncidentSchema = new mongoose.Schema({
         images: [Schema.Types.ObjectId]
 });
 
-mongoose.model('cityCrewIncident', cityCrewIncidentSchema, 'incident');
-mongoose.model('lawEnfIncident', lawEnfIncidentSchema, 'incident');
+module.exports.cityCrewIncident = mongoose.model('cityCrewIncident', cityCrewIncidentSchema, 'incident');
+module.exports.lawEnfIncident = mongoose.model('lawEnfIncident', lawEnfIncidentSchema, 'incident');
