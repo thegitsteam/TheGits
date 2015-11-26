@@ -15,7 +15,7 @@ module.exports.getAcountInfo = function(req,res){
 		 userInfo.middleName = req.user.middleName;
 		 userInfo.surname = req.user.surname;
 		 userInfo.email = req.user.email;
-		 userInfo.supervisor = req.user.customData.supervisor;
+		 userInfo.supervisor = req.user.customData.isSupervisor;
 	}
 	catch(err){
 		res.sendStatus(400);
