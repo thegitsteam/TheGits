@@ -5,18 +5,14 @@ body {
     font-size: 12px;
 }
 
-.container {
-    text-align: center;
-}
-
-.dropdown-menu {
-    left: 50%;
-    transform: translate(-50%, 0);
-}
-
-.jumbotron {
+.main-view {
     height: 100%;
     background: url('/app/assets/bg.jpg') no-repeat center center scroll;
+
+    .container {
+        text-align: center;
+        width: 100%;
+    }
 }
 
 .panel {

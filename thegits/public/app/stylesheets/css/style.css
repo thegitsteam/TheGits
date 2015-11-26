@@ -4750,16 +4750,12 @@ html, body {
   width: 100%;
   font-size: 12px; }
 
-.container {
-  text-align: center; }
-
-.dropdown-menu {
-  left: 50%;
-  transform: translate(-50%, 0); }
-
-.jumbotron {
+.main-view {
   height: 100%;
   background: url("/app/assets/bg.jpg") no-repeat center center scroll; }
+.main-view .container {
+  text-align: center;
+  width: 100%; }
 
 .panel {
   border-radius: 3px; }
@@ -4786,5 +4782,9 @@ html, body {
 .centered-form .panel {
   background: rgba(255, 255, 255, 0.8);
   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px; }
+
+/* Navigation Bar */
+.navbar-brand {
+  padding-bottom: 50px; }
 
 /*# sourceMappingURL=style.css.map */

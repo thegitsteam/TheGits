@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">City Crew Reporting</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="buildingType">Select Building Type:</label>
+                            <select class="form-control" id="buildingType" ng-model="lawReporting.buildingType" ng-change="setBuildingType()">
+                                <option>Shack</option>
+                                <option>Daniel's House</option>
+                                <option>Dog House</option>
+                            </select>
+                        </div>
+
+                        <div class="error usernameError hide">Building Address is empty</div>
+                        <div class="form-group">
+                            <input type="text" name="buildingAddress" id="buildingAddress" class="form-control input-sm" placeholder="Building Address" ng-model="lawReporting.buildingAddress" ng-change="setBuildingAddress()" ng-maxlength="20">
+                        </div>
+
+                        <div class="error usernameError hide">Moniker is empty</div>
+                        <div class="form-group">
+                            <input type="text" name="moniker" id="moniker" class="form-control input-sm" placeholder="Moniker" ng-model="lawReporting.setMoniker" ng-change="setMoniker()" ng-maxlength="20">
+                        </div>
+
+                        <input type="button" value="Upload an Image" class="btn btn-info btn-block">
+                        <br>
+
+                        <div class="error submissionError hide">*Please resolve above errors*</div>
+                        <input type="submit" value="Submit" class="btn btn-info btn-block" ng-click="submitReport()">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

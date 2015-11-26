@@ -1,8 +1,13 @@
 angular.module('gitsApp.controllers')
 .controller('LoginCtrl', [
     '$scope',
-    'login',
-    function($scope, login) {
+    'auth',
+    function($scope, auth) {
+        // If user is logged in, automatically redirect to home
+        if (auth.isLoggedIn()) {
+            window.location.href = '/#/home';
+        }
+
         $scope.setUsername = function() {
             $scope.username = $('#username').val();
         };
@@ -29,7 +34,11 @@ angular.module('gitsApp.controllers')
             }
 
             if (!hasError) {
-                login.login($scope.username, $scope.password);
+                var login = {
+                    username: $scope.username,
+                    password: $scope.password
+                };
+                auth.login(login);
             }
         }
 
