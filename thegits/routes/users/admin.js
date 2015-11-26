@@ -9,7 +9,7 @@ router.get('/',function(req,res){
 	res.status(200);
 	res.send('GET');
 });
-router.post('/',stormpath.groupsRequired(['Admin']),userMiddleware.getAcountInfo,userContoller.createAccount);
+router.post('/',stormpath.groupsRequired(['Admin']),userMiddleware.getAcountFormInfo,userContoller.createAccount);
 
 router.get('/:id',function(req,res){
 	if(req.params.id){

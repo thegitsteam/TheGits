@@ -1,4 +1,4 @@
-module.exports.getAcountInfo = function(req,res,next){
+module.exports.getAcountFormInfo = function(req,res,next){
 	account = {};
 	try{
 		account.username = req.body.username;
