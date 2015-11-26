@@ -1,8 +1,14 @@
 angular.module('gitsApp.controllers')
 .controller('RegistrationCtrl', [
     '$scope',
-    'admin',
-    function($scope, admin) {
+    'auth',
+    function($scope, auth) {
+        if (!auth.isLoggedIn) {
+            window.location.href = '/#/login';
+        } else if (auth.getUserType() !== 'Admin') {
+            window.location.href = '/#/home';
+        }
+
         $scope.setAccountType = function() {
             var accountType = $('#accountType option:selected').val();
             if (accountType !== 'Admin') {
@@ -41,6 +47,10 @@ angular.module('gitsApp.controllers')
             }
         };
 
+        $scope.setEmail = function() {
+            $scope.email = $('#email').val();
+        };
+
         $scope.setEmployeeTitle = function() {
             $scope.employeeTitle = $('#employeeTitle').val();
         };
@@ -51,10 +61,6 @@ angular.module('gitsApp.controllers')
 
         $scope.getDeleteID = function() {
             $scope.deleteID = $('#userToDelete').val();
-        };
-
-        $scope.deleteUser = function() {
-            admin.delete($scope.deleteID);
         };
 
         $scope.registerUser = function() {
@@ -105,6 +111,13 @@ angular.module('gitsApp.controllers')
                 $('.employeeTitleError').addClass('hide');
             }
 
+            // Check supervisor boolean
+            if ($('#supervisorCheckbox').is(':checked') && $scope.accountType !== 'Admin') {
+                $scope.isSupervisor = true;
+            } else {
+                $scope.isSupervisor = false;
+            }
+
             // Check password
             if ($scope.password !== $('#passwordConfirmation').val()) {
                 $('.passwordError').removeClass('hide');
@@ -118,16 +131,37 @@ angular.module('gitsApp.controllers')
                 return;
             }
 
-            var user = {};
-            user.accountType = $scope.accountType;
-            user.firstName = $scope.firstName;
-            user.middleInitial = $scope.middleInitial;
-            user.lastName = $scope.lastName;
-            user.employeeNumber = $scope.employeeNumber;
-            user.password = $scope.password;
+            if (!hasError) {
+                var registration = {
+                    username: $scope.username,
+                    firstName: $scope.firstName,
+                    middleInitial: $scope.middleInitial,
+                    lastName: $scope.lastName,
+                    email: $scope.email,
+                    password: $scope.password,
+                    isSupervisor: $scope.isSupervisor,
+                    employeeTitle: $scope.employeeTitle,
+                    employeeNumber: $scope.employeeNumber,
+                };
 
-            if (user.accountType === 'Admin') {
-                admin.create(user);
+                var route;
+
+                switch($scope.accountType) {
+                    case 'Admin':
+                        registration.accountType = 'Admin';
+                        route = 'admin';
+                        break;
+                    case 'City Crew':
+                        registration.accountType = 'City';
+                        route = 'citycrew';
+                        break;
+                    case 'Law Enforcement':
+                        registration.accountType = 'Law';
+                        route = 'law';
+                        break;
+                }
+
+                auth.register(route, registration);
             }
         }
     }

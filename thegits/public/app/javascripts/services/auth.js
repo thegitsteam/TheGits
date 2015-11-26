@@ -14,16 +14,6 @@ angular.module('gitsApp.services')
             return localStorage.getItem('gitsUser');
         };
 
-        // Triangle of DOOOOOOM
-        auth.login = function(user) {
-            return $http.post('/login', user).success(function() {
-                $http.get('/stormpath/account').success(function(data) {
-                    auth.saveToken(data);
-                    location.reload();
-                });
-            });
-        };
-
         auth.isLoggedIn = function() {
             var token = auth.getToken();
             return token !== null;
@@ -31,8 +21,30 @@ angular.module('gitsApp.services')
 
         auth.getCurrentUser = function() {
             var token = JSON.parse(auth.getToken());
-            return token.email;
+            if (token !== null) {
+                return token.email;
+            } else {
+                return null;
+            }
+        };
 
+        auth.getUserType = function() {
+            var token = JSON.parse(auth.getToken());
+            if (token !== null) {
+                return token.group;
+            } else {
+                return null;
+            }
+        };
+
+        // Triangle of DOOOOOOM
+        auth.login = function(user) {
+            return $http.post('/login', user).success(function() {
+                $http.get('/users').success(function(data) {
+                    auth.saveToken(data);
+                    location.reload();
+                });
+            });
         };
 
         auth.logout = function() {
@@ -42,9 +54,12 @@ angular.module('gitsApp.services')
             });
         };
 
-        auth.register = function(user) {
-            return $http.post('/register', user).success(function() {
-                auth.saveToken(user);
+        auth.register = function(route, user) {
+            return $http.post('/users/' + route, user).success(function() {
+                $http.get('/users').success(function(data) {
+                    auth.saveToken(data);
+                    window.location = '/';
+                });
             });
         };
 

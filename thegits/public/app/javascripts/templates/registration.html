@@ -42,6 +42,11 @@
                             <input type="username" name="username" id="username" class="form-control input-sm" placeholder="Username" ng-model="registration.username" ng-change="setUsername()">
                         </div>
 
+                        <div class="error emailError hide">Email field is empty</div>
+                        <div class="form-group">
+                            <input type="email" name="email" id="email" class="form-control input-sm" placeholder="Email" ng-model="registration.email" ng-change="setEmail()">
+                        </div>
+
                         <div class="error employeeNumberError hide">Employee Numbers should not contain non-numbers</div>
                         <div class="form-group">
                             <input type="employeeNumber" name="employeeNumber" id="employeeNumber" class="form-control input-sm" placeholder="Employee Number" ng-model="registration.employeeNumber" ng-change="setEmployeeNumber()">
@@ -68,15 +73,11 @@
                         </div>
 
                         <div class="hide supervisor-select checkbox">
-                            <label><input type="checkbox" value="isSupervisor">Supervisor?</label>
+                            <label><input type="checkbox" value="isSupervisor" id="supervisorCheckbox">Supervisor?</label>
                         </div>
 
                         <div class="error submissionError hide">*Please resolve above errors*</div>
                         <input type="submit" value="Register" class="btn btn-info btn-block" ng-click="registerUser()">
-
-                        <br>
-                        <input type="userToDelete" name="userToDelete" id="userToDelete" class="form-control input-sm" placeholder="User ID to be deleted" ng-model="registration.delete" ng-change="getDeleteID()">
-                        <input type="submit" value="Delete" class="btn btn-error btn-block" ng-click="deleteUser()">
                     </form>
                 </div>
             </div>

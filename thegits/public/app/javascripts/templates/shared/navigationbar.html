@@ -33,6 +33,14 @@
                         <li><a href="#">Update Incidents</a></li>
                     </ul>
                 </li>
+                <li class="dropdown" ng-model="navigationbar.isAdmin" ng-show="isAdmin()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Users <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#/register">Create New User</a></li>
+                    </ul>
+                </li>
             </ul>
             <div class="navbar-text navbar-right" ng-hide="isLoggedIn()">
                 <a href="/#/login">Login</a>

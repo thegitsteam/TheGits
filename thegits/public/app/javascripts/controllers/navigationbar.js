@@ -15,5 +15,14 @@ angular.module('gitsApp.controllers')
         $scope.logout = function() {
             auth.logout();
         };
+
+        $scope.isAdmin = function() {
+            var userType = auth.getUserType();
+            if (userType === 'Admin') {
+                return true;
+            } else {
+                return false;
+            }
+        };
     }
 ]);
