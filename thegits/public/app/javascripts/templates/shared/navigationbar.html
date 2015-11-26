@@ -1,8 +1,8 @@
-<nav class="navbar-inverse navbar-default" ng-model="navigationbar" ng-init="getUsername()">
+<nav class="navbar-inverse navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/#/">
                 <img src="/app/assets/gitslogoicon.jpg">
             </a>    
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -34,7 +34,13 @@
                     </ul>
                 </li>
             </ul>
-            <p class="navbar-text navbar-right">Signed in as <a href="#"><b><i>{{ username }}</i></b></a></p> 
+            <div class="navbar-text navbar-right" ng-hide="isLoggedIn()">
+                <a href="/#/login">Login</a>
+            </div>
+            <div class="navbar-text navbar-right" ng-show="isLoggedIn()">
+                Signed in as <em>{{ username }}</em>
+                (<a href="#" ng-model="logout" ng-click="logout()">Logout</a>)
+            </div>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
