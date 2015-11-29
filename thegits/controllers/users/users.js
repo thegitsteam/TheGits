@@ -5,6 +5,7 @@ var mongoose = ('mongoose');
 var City = require('../../models/users/citycrew');
 var Admin = require('../../models/users/admin');
 var Law = require('../../models/users/law-enforcement');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 module.exports.getAcountInfo = function(req,res){
 	var userInfo = {};
@@ -154,19 +155,56 @@ createMongoUser = function(account,callback){
 
 };
 
-/*module.exports.getUser = function(req,res){
+module.exports.getUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+		console.log('citycrew bitch');
+	}
+	else
+		userModel = Law;
+	console.log(userModel);
 	if(req.params.id){
-		UserType.findOne({ '_id': req.params.id }, function(error, report) {
-            if(error){
-                res.json(error);
-            }
-            else{
-                res.json(report)
-        }
-        });
+		getMongoUser(userModel,req.params.id,function(err,user){
+			if(err){
+				console.log(err);
+				res.status(404).send('User Not Found');
+			}
+			else{
+				res.json(user);
+			}
+		});
+
 	}
-	else{
-		res.send('no id');
+	else res.status(400).send('No Id');
+};
+module.exports.getAllUsers = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	if (userType == 'admin'){
+		userModel = Admin;
 	}
-}*/
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	console.log(userModel);
+	userModel.find({},function(err,users){
+		if(err){
+			res.status(404).send('No users found');
+		}
+		else{
+			res.json(users);
+		}
+	});
+};
+
+function getMongoUser(userModel,id,callback){
+	userModel.findOne({'_id':new ObjectId(id)},callback);
+};
 

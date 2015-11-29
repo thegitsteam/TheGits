@@ -5,21 +5,12 @@ var stormpath = require('express-stormpath');
 var userContoller = require('../../controllers/users/users');
 var userMiddleware = require('./users-middleware');
 
-router.get('/',function(req,res){
-	res.status(200);
-	res.send('GET');
-});
+
+router.get('/',stormpath.groupsRequired(['Admin','Law'],false),userContoller.getAllUsers);
 router.post('/',stormpath.groupsRequired(['Admin']),userMiddleware.getAcountFormInfo,userContoller.createAccount);
 
-router.delete('/:id',function(req,res){
-	if(req.params.id){
-		res.status(200);
-		res.send('DELTE ' + req.params.id);
-	}
-	else{
-		res.send('no id');
-	}
-});
+router.get('/:id',stormpath.groupsRequired(['Admin','Law'],false),userContoller.getUser);
+
 router.put('/:id',function(req,res){
 	if(req.params.id){
 		res.status(200);
