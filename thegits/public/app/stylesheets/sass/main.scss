@@ -32,23 +32,6 @@ body {
     color: red;
 }
 
-/* Reports */
-.report-view {
-    text-align: left;
-    font-size: 14px;
-
-    .table {
-        table-layout:fixed;
-        background-color: white;
-    }
-
-    .table td {
-        white-space: normal;
-        overflow: auto;
-    }
-    
-}
-
 /* Main */
 .main {
     /*background-color: #f6f6f6;*/

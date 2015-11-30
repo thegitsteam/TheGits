@@ -4769,17 +4769,6 @@ html, body {
 .error {
   color: red; }
 
-/* Reports */
-.report-view {
-  text-align: left;
-  font-size: 14px; }
-.report-view .table {
-  table-layout: fixed;
-  background-color: white; }
-.report-view .table td {
-  white-space: normal;
-  overflow: auto; }
-
 /* Main */
 .main {
   /*background-color: #f6f6f6;*/
@@ -4797,5 +4786,16 @@ html, body {
 /* Navigation Bar */
 .navbar-brand {
   padding-bottom: 50px; }
+
+/* Reports */
+.report-view {
+  text-align: left;
+  font-size: 14px; }
+.report-view .table {
+  table-layout: fixed;
+  background-color: white; }
+.report-view .table td {
+  white-space: normal;
+  overflow: auto; }
 
 /*# sourceMappingURL=style.css.map */

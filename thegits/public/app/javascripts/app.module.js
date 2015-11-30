@@ -53,7 +53,7 @@ app.config([
         })
 
         .state('report', {
-            url: '/makereport',
+            url: '/report/create',
             views: {
                 'main-view': {
                     templateUrl: '/app/javascripts/templates/report.html',
@@ -66,8 +66,8 @@ app.config([
             }
         })
 
-    	.state('reportview', {
-            url: '/viewreports',
+    	.state('viewreport', {
+            url: '/report/view',
             views: {
                 'main-view': {
                     templateUrl: '/app/javascripts/templates/reportsview.html',
