@@ -54,7 +54,9 @@ angular.module('gitsApp.controllers')
                 location: location
             };
 
-            report.create(reportData);
+            report.create(reportData).success(function(data) {
+                $scope.reports.push(data);
+            });
         };
     }
 ]);
