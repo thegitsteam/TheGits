@@ -163,11 +163,9 @@ module.exports.getUser = function(req,res){
 	}
 	else if (userType == 'citycrew'){
 		userModel = City;
-		console.log('citycrew bitch');
 	}
 	else
 		userModel = Law;
-	console.log(userModel);
 	if(req.params.id){
 		getMongoUser(userModel,req.params.id,function(err,user){
 			if(err){
@@ -178,7 +176,6 @@ module.exports.getUser = function(req,res){
 				res.json(user);
 			}
 		});
-
 	}
 	else res.status(400).send('No Id');
 };
@@ -193,7 +190,6 @@ module.exports.getAllUsers = function(req,res){
 	}
 	else
 		userModel = Law;
-	console.log(userModel);
 	userModel.find({},function(err,users){
 		if(err){
 			res.status(404).send('No users found');

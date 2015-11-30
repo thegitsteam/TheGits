@@ -6,14 +6,15 @@ var mongoose = require('mongoose');
 var locationSchema = new mongoose.Schema({
     address: String,
     zip: String,
-    street1: String,
-    street2: String
+    crossStreet1: String,
+    crossStreet2: String
 });
 
 var reportSchema = new mongoose.Schema({
     description: String,
-    location: String,
-    date: Date
+    location: locationSchema,
+    date: Date,
+    buildingType: String
 });
 
 module.exports = mongoose.model('report', reportSchema);
