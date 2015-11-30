@@ -53,7 +53,7 @@ app.config([
         })
 
         .state('report', {
-            url: '/reports',
+            url: '/makereport',
             views: {
                 'main-view': {
                     templateUrl: '/app/javascripts/templates/report.html',
@@ -66,12 +66,12 @@ app.config([
             }
         })
 
-    	.state('lawreporting', {
-            url: '/lawreporting',
+    	.state('reportview', {
+            url: '/viewreports',
             views: {
                 'main-view': {
-                    templateUrl: '/app/javascripts/templates/lawreporting.html',
-                    controller: 'LawReportingCtrl'
+                    templateUrl: '/app/javascripts/templates/reportsview.html',
+                    controller: 'ReportingCtrl'
                 },
                 'navigation-bar': {
                     templateUrl: '/app/javascripts/templates/shared/navigationbar.html',
