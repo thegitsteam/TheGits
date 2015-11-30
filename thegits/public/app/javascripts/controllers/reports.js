@@ -4,7 +4,7 @@ angular.module('gitsApp.controllers')
     'auth',
     'report',
     function($scope, auth, report) {
-        if (!auth.isLoggedIn) {
+        if (!auth.isLoggedIn()) {
             window.location.href = '/#/login';
         }
 
