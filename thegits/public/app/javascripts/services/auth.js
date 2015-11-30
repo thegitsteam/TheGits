@@ -57,7 +57,6 @@ angular.module('gitsApp.services')
         auth.register = function(route, user) {
             return $http.post('/users/' + route, user).success(function() {
                 $http.get('/users').success(function(data) {
-                    auth.saveToken(data);
                     window.location = '/';
                 });
             });
