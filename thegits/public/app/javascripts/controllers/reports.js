@@ -8,6 +8,12 @@ angular.module('gitsApp.controllers')
             window.location.href = '/#/login';
         }
 
+        // Get all reports upon load
+        report.getAll().success(function(data) {
+            $scope.reports = data;
+        });
+
+
         $scope.setBuildingType = function() {
             $scope.buildingType = $('#buildingType option:selected').val();
         };
@@ -41,14 +47,14 @@ angular.module('gitsApp.controllers')
                 crossStreet2: $scope.crossStreet2
             };
 
-            var report = {
+            var reportData = {
                 date: Date(),
                 buildingtype: $scope.buildingType,
                 description: $scope.description,
                 location: location
             };
 
-            alert(JSON.stringify(report));
+            report.create(reportData);
         };
     }
 ]);

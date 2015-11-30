@@ -46,7 +46,7 @@ module.exports.showReport = function(req,res){
             }
             else{
   			 	res.json(report)
-  		}
+  		    }
 		});
 };
 

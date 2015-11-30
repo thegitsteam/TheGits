@@ -2,12 +2,20 @@ angular.module('gitsApp.services')
 .factory('report', [
     '$http',
     function ($http) {
-        var report = {};
+        var report = {
+            reports: []
+        };
 
-        report.createReport = function(data) {
+        report.getAll = function() {
+            return $http.get('/reports').success(function(res) {
+                return res;
+            });
+        };
+
+        report.create = function(data) {
             var report = JSON.stringify(data);
-            $http.post('/reports', report).success(function() {
-                window.location = '/';
+            $http.post('/reports', report).success(function(data) {
+                report.reports.push(data);
             });
         };
 
