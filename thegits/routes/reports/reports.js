@@ -4,13 +4,9 @@ var mongoose = require('mongoose');
 var reportController = require('../../controllers/report/report');
 
 
-router.get('/',function(req,res){
-	res.send('getting reports');
-});
+router.get('/',reportController.getAllReports);
 
-router.post('/',function(req,res){
-	res.send('creating new report');
-});
+router.post('/',reportController.createReport);
 
 router.post('/createreport/:desc/:loc',reportController.createReport);
 
