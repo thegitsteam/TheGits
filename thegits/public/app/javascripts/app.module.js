@@ -52,6 +52,20 @@ app.config([
             }
         })
 
+        .state('report', {
+            url: '/reports',
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/report.html',
+                    controller: 'ReportingCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: 'app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
+                }
+            }
+        })
+
     	.state('lawreporting', {
             url: '/lawreporting',
             views: {

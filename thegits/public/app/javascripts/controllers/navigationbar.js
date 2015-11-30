@@ -6,6 +6,7 @@ angular.module('gitsApp.controllers')
         // init function
         $scope.$on('$viewContentLoaded', function() {
             $scope.username = auth.getCurrentUser();
+            $scope.userType = auth.getUserType();
         });
 
         $scope.isLoggedIn = function() {

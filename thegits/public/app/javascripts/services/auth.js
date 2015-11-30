@@ -22,7 +22,7 @@ angular.module('gitsApp.services')
         auth.getCurrentUser = function() {
             var token = JSON.parse(auth.getToken());
             if (token !== null) {
-                return token.email;
+                return token.username;
             } else {
                 return null;
             }

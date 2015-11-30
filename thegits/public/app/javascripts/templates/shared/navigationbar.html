@@ -20,7 +20,7 @@
                         Reports <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Make Report</a></li>
+                        <li><a href="/#/reports">Make Report</a></li>
                         <li><a href="#">View Reports</a></li>
                     </ul>
                 </li>
@@ -46,7 +46,7 @@
                 <a href="/#/login">Login</a>
             </div>
             <div class="navbar-text navbar-right" ng-show="isLoggedIn()">
-                Signed in as <em>{{ username }}</em>
+                Signed in as <em>{{ username }}</em> - {{ userType }}
                 (<a href="#" ng-model="logout" ng-click="logout()">Logout</a>)
             </div>
         </div><!-- /.navbar-collapse -->
