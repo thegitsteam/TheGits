@@ -90,3 +90,13 @@ module.exports.modifyLocation = function(req,res){
 	} 
 		
 };
+module.exports.getAllReports = function(req,res){
+    Report.find({},function(err,reports){
+        if(err){
+            res.status(404).send('Reports not found');
+        }
+        else{
+            res.send(reports);
+        }
+    });
+};
