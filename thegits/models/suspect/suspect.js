@@ -14,7 +14,6 @@ var suspectNameSchema = new mongoose.Schema({
 var suspectSchema = new mongoose.Schema({
     suspectName: suspectNameSchema,
     //suspectImage: [Schema.Types.ObjectId],
-    suspectImage: String,
     gangName: String,
     status: String
 });

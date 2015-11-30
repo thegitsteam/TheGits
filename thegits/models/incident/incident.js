@@ -2,8 +2,8 @@
  * Created by MajaEngvall on 15-11-12.
  */
 var mongoose = require('mongoose');
-var incidentGpsSchema = require('incident-gps');
-var locationSchema = require
+var incidentGpsSchema = require('./incident-gps');
+var locationSchema = require('./location');
 var lawEnfIncidentSchema = new mongoose.Schema({
     cityCrewId: Number,
     lawEnfEmpNr: Number,

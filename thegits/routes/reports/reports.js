@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var stormpath =  require('express-stormpath');
 var reportController = require('../../controllers/report/report');
 
 
-router.get('/',reportController.getAllReports);
+router.get('/',stormpath.groupsRequired(['Admin','Law'],false),reportController.getAllReports);
 
 router.post('/',reportController.createReport);
 
