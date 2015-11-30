@@ -22,7 +22,7 @@ angular.module('gitsApp.services')
         auth.getCurrentUser = function() {
             var token = JSON.parse(auth.getToken());
             if (token !== null) {
-                return token.email;
+                return token.username;
             } else {
                 return null;
             }
@@ -57,7 +57,6 @@ angular.module('gitsApp.services')
         auth.register = function(route, user) {
             return $http.post('/users/' + route, user).success(function() {
                 $http.get('/users').success(function(data) {
-                    auth.saveToken(data);
                     window.location = '/';
                 });
             });

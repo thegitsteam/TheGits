@@ -5,19 +5,31 @@ var Report = require('../../models/report/report');
 
 module.exports.createReport = function(req,res){
 	//res.send('getting all reports. this should be supervisor only');
-	var d = new Date();
+	
+    var reportData = {};
+    try{
+            reportData = {
+            description: req.body.description,
+            date: req.body.date,
+            buildingType:req.body.buildingType,
+            location:{
+                address:req.body.location.address,
+                zip:req.body.location.zipCode,
+                crossStreet1:req.body.location.crossStreet1,
+                crossStreet2:req.body.location.crossStreet2
+            }
+        };
+    }
+    catch(err){
+        res.sendStatus(400);
+    }
 
-	var report_data = {
-    description: req.params.desc,
-    location: req.params.loc,
-    date: d
-	};
-
-	var newreport = new Report(report_data);
+	var newreport = new Report(reportData);
 
 	newreport.save( function(error, data){
     if(error){
-        res.json(error);
+        console.log(err);
+        res.status(400).json(error);
     }
     else{
         res.json(data);
@@ -34,7 +46,7 @@ module.exports.showReport = function(req,res){
             }
             else{
   			 	res.json(report)
-  		}
+  		    }
 		});
 };
 
@@ -77,4 +89,14 @@ module.exports.modifyLocation = function(req,res){
 		res.send('invalid id');
 	} 
 		
+};
+module.exports.getAllReports = function(req,res){
+    Report.find({},function(err,reports){
+        if(err){
+            res.status(404).send('Reports not found');
+        }
+        else{
+            res.send(reports);
+        }
+    });
 };
