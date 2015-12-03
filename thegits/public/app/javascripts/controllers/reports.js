@@ -7,12 +7,18 @@ angular.module('gitsApp.controllers')
         if (!auth.isLoggedIn()) {
             window.location.href = '/#/login';
         }
-
         // Get all reports upon load
         report.getAll().success(function(data) {
             $scope.reports = data;
         });
 
+        $scope.isAuthorizedToSeeReports = function() {
+            if (auth.getUserType() === 'City') {
+                return false;
+            } else {
+                return true;
+            }
+        }
 
         $scope.setBuildingType = function() {
             $scope.buildingType = $('#buildingType option:selected').val();
