@@ -18,7 +18,7 @@ angular.module('gitsApp.controllers')
             } else {
                 return true;
             }
-        }
+        };
 
         $scope.setBuildingType = function() {
             $scope.buildingType = $('#buildingType option:selected').val();
