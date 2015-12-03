@@ -13,7 +13,7 @@ angular.module('gitsApp.controllers')
         });
 
         $scope.isAuthorizedToSeeReports = function() {
-            if (auth.getUserType() === 'City') {
+            if (auth.isCityCrew()) {
                 return false;
             } else {
                 return true;
