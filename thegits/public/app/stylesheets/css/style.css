@@ -4787,4 +4787,15 @@ html, body {
 .navbar-brand {
   padding-bottom: 50px; }
 
+/* Reports */
+.report-view {
+  text-align: left;
+  font-size: 14px; }
+.report-view .table {
+  table-layout: fixed;
+  background-color: white; }
+.report-view .table td {
+  white-space: normal;
+  overflow: auto; }
+
 /*# sourceMappingURL=style.css.map */

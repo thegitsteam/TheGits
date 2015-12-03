@@ -1,0 +1,16 @@
+/* Reports */
+.report-view {
+    text-align: left;
+    font-size: 14px;
+
+    .table {
+        table-layout:fixed;
+        background-color: white;
+    }
+
+    .table td {
+        white-space: normal;
+        overflow: auto;
+    }
+    
+}
