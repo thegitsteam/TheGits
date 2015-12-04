@@ -10,4 +10,5 @@ var locationSchema = new mongoose.Schema({
     crossStreet2: String
 });
 
-module.exports = mongoose.model('location', locationSchema);
+module.exports = locationSchema;
+mongoose.model('location', locationSchema);

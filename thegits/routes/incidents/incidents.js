@@ -1,19 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var incidentController = require('../../controllers/incident/incident');
 
-router.get('/',function(req,res){
-	res.send('getting all incidents. this should be supervisor only');
-});
-router.post('/',function(req,res){
-	res.send('creating new incident');
-});
-router.get('/:id',function(req,res){
-	if(req.params.id){
-		res.send('get specific incident.' + req.params.id);	
-	}
-	else res.send('invalid id');
-	
-});
+
+router.get('/',incidentController.getAllIncidents);
+
+router.post('/',incidentController.createIncident);
+
+router.get('/:id',incidentController.getIncident);
+
 router.put('/:id',function(req,res){
 	if(req.params.id){
 		res.send('moedify specific incident.' + req.params.id);	
