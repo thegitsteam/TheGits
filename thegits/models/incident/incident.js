@@ -21,7 +21,7 @@ var incidentSchema = new mongoose.Schema({
     gpsCoord: incidentGpsSchema,
     moniker: String,
     images: String,
-    suspects: {type: mongoose.Schema.Types.ObjectId, ref: 'suspect'},
+    suspects: [{type: mongoose.Schema.Types.ObjectId, ref: 'suspect'}],
     images: String,
     suspects: String,
     status: String

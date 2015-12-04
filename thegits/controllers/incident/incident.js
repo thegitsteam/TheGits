@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 var Incident = require('../../models/incident/incident');
 
@@ -83,16 +84,20 @@ module.exports.modifyIncident = function(req,res){
 	if(req.params.id){
 		Incident.findOne({ '_id': req.params.id }, function(error, incident) {
     	if (error) {
-        	res.json(error);
+        	res.status(400).send('Incident not found');
     	} 
     	else {
-        	incident.location = req.params.location;
+            console.log(req.body.suspects);
+            var suspectId = convertToObjectId(req.body.suspects);
+            console.log(suspectId);
+        	incident.suspects = suspectId;
         	incident.save(function(err, list) {
         		if(err) {
-            		res.json(err);
+            		res.status(404).send('Not found');
+                    console.log(err);
         		}
         		else {
-        			res.json(incident);
+        			res.send(incident.populate('suspects'));
         		}
         	});
     	}
@@ -112,4 +117,12 @@ module.exports.getAllIncidents = function(req,res){
             res.send(incidents);
         }
     });
+};
+
+convertToObjectId = function(models){
+    var objectIdArray = [];
+    models.forEach( function(current) {
+        objectIdArray.push(new ObjectId(current));
+    });
+    return objectIdArray
 };

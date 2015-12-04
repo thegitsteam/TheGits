@@ -9,12 +9,13 @@ router.post('/',incidentController.createIncident);
 
 router.get('/:id',incidentController.getIncident);
 
-router.put('/:id',function(req,res){
+router.put('/:id',incidentController.modifyIncident);
+/*router.put('/:id',function(req,res){
 	if(req.params.id){
 		res.send('moedify specific incident.' + req.params.id);	
 	}
 	else res.send('invalid id');
-	});
+	});*/
 router.delete('/:id',function(req,res){
 		if(req.params.id){
 		res.send('delete specific incident.' + req.params.id);	
