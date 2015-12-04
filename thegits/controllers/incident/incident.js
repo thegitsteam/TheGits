@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Incident = require('../../models/incident/incident');
 
 module.exports.createIncident = function(req,res){
-	//res.send('getting all reports. this should be supervisor only');
 	
     var incidentData = {};
     try{
@@ -13,6 +12,10 @@ module.exports.createIncident = function(req,res){
             zip: req.body.zip,
             crossStreet1: req.body.crossStreet1,
             crossStreet2: req.body.crossStreet2
+            };
+            
+            gpsData = {
+                loc: req.body.gpsCoord
             };
 
             incidentData = {
@@ -25,7 +28,7 @@ module.exports.createIncident = function(req,res){
             scale: req.body.scale,
             typeOfBuilding: req.body.typeOfBuilding,
             location: locationData,
-            gpsCoord: req.body.gpsCoord,
+            gpsCoord: gpsData,
             moniker: req.body.moniker,
             images: req.body.image,
             suspects: req.body.suspects,
@@ -52,20 +55,18 @@ module.exports.createIncident = function(req,res){
 };
 
 module.exports.getIncident = function(req,res){
-	//var Report = mongoose.model('report');
 	Incident.findOne({ '_id': req.params.id }, function(error, incident) {
-  			if(error){
-                res.json(error);
-            }
-            else{
-  			 	res.json(incident)
-  		    }
-		});
+  		if(error){
+            res.json(error);
+        }
+        else{
+  			 res.json(incident)
+  		}
+	});
 };
 
 module.exports.deleteIncident = function(req,res){
 	if(req.params.id){
-	//res.send('delete specific report.' + req.params.id);
 		Incident.remove({ '_id': req.params.id }, function(err) {
     		if (!err) {
             	res.send('deleted');
@@ -80,7 +81,6 @@ module.exports.deleteIncident = function(req,res){
 
 module.exports.modifyIncident = function(req,res){
 	if(req.params.id){
-		//res.send('moedify specific report.' + req.params.id);	
 		Incident.findOne({ '_id': req.params.id }, function(error, incident) {
     	if (error) {
         	res.json(error);
@@ -104,12 +104,12 @@ module.exports.modifyIncident = function(req,res){
 		
 };
 module.exports.getAllIncidents = function(req,res){
-    Incident.find({},function(err,reports){
+    Incident.find({},function(err,incidents){
         if(err){
             res.status(404).send('Incidents not found');
         }
         else{
-            res.send(reports);
+            res.send(incidents);
         }
     });
 };
