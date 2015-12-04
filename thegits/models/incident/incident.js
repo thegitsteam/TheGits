@@ -4,12 +4,8 @@
 var mongoose = require('mongoose');
 var incidentGpsSchema = require('./incident-gps');
 var locationSchema = require('./location');
-<<<<<<< HEAD
-var lawEnfIncidentSchema = new mongoose.Schema({
-=======
 
 var incidentSchema = new mongoose.Schema({
->>>>>>> incidentcontroller
     cityCrewId: Number,
     lawEnfEmpNr: Number,
     cityCrewSupervisor: Number,
