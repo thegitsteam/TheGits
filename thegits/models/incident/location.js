@@ -6,8 +6,9 @@ var mongoose = require('mongoose');
 var locationSchema = new mongoose.Schema({
     address: String,
     zip: String,
-    street1: String,
-    street2: String
+    crossStreet1: String,
+    crossStreet2: String
 });
 
-module.exports = mongoose.model('location', locationSchema);
+module.exports = locationSchema;
+mongoose.model('location', locationSchema);

@@ -16,22 +16,32 @@ module.exports.getSuspect = function(req,res){
 
 module.exports.createSuspect = function(req,res){
     var suspectData = {
-    suspectName: req.params.name,
-    suspectImage: '',
-    gangName: req.params.gangName,
-    status: req.params.status
+    suspectName: req.body.name,
+    gangName: req.body.gangName,
+    status: req.body.status
     };
-
+    console.log(suspectData);
     var newSuspect = new Suspect(suspectData);
 
     newSuspect.save( function(error, data){
     if(error){
-        res.json(error);
+        console.log(error);
+        res.status(400).send(error);
     }
     else{
-        res.json(data);
+        res.send(data);
     }
     });
 
+};
+module.exports.getAllSuspects = function(req,res){
+    Suspect.find({},function(err,suspects){
+        if(err){
+            res.status(404).send(err);
+        }
+        else{
+            res.status(200).send(suspects);
+        }
+    });
 };
 
