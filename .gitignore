@@ -33,7 +33,6 @@ npm-debug.log
 **/.sass-cache/*
 
 # stylesheet stuff
-style.css
 style.css.map
 
 .DS_Store
