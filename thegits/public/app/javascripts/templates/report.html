@@ -1,4 +1,4 @@
-<div class="container" ng-show="isAuthorizedToSeeReports()">
+<div class="container" ng-if="isAuthorizedToSeeReports()">
     <div class="row centered-form">
         <!-- Modal Trigger -->
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#reportingModal">Create Report</button>
@@ -28,7 +28,7 @@
 
                             <div class="form-group">
                                 <label for="description">Description:</label>
-                                <textarea class="form-control input-sm" id="description"></textarea>
+                                <textarea class="form-control input-sm" id="description" ng-model="report.description" ng-change="setDescription()"></textarea>
                             </div>
 
                             <div class="error addressError hide">Address is empty</div>
@@ -59,7 +59,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default center-block" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default center-block" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
     </div>
 </div>
 
-<div class="container" ng-hide="isAuthorizedToSeeReports()">
+<div class="container" ng-if="!isAuthorizedToSeeReports()">
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
@@ -91,7 +91,7 @@
 
                             <div class="form-group">
                                 <label for="description">Description:</label>
-                                <textarea class="form-control input-sm" id="description"></textarea>
+                                <textarea class="form-control input-sm" id="description" ng-model="report.description" ng-change="setDescription()"></textarea>
                             </div>
 
                             <div class="error addressError hide">Address is empty</div>
