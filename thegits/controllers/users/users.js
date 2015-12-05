@@ -6,6 +6,7 @@ var City = require('../../models/users/citycrew');
 var Admin = require('../../models/users/admin');
 var Law = require('../../models/users/law-enforcement');
 var ObjectId = require('mongoose').Types.ObjectId; 
+mongoose.Promise = require('q').Promise;
 
 module.exports.getAcountInfo = function(req,res){
 	var userInfo = {};
@@ -97,7 +98,7 @@ function addAccountToGroup(createdAccount,group){
 		});
 	});
 };
-
+//Need to rework this. Mongoose has its own promise implementation and is easily adapted to q
 function createMongoUserPromise(account){
 	return Q.Promise(function(resolve,reject,notify){
 		createMongoUser(account,function(err,data){
@@ -154,7 +155,35 @@ createMongoUser = function(account,callback){
     });
 
 };
+module.exports.deleteUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	var client =  req.app.get('stormpathClient');
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	if(req.params.id){
+		userQuery = userModel.findOne({'_id':new ObjectId(req.params.id)});
+		userQuery.then(function(user){
+			return getStormpathAccountByHref(client,userQuery.href);
+		})
+		.then(function(stormpathAccount){
+			console.log(stormpathAccount);
+			stormpathAccount.delete();
+		})
+		.fail(function(err){
+			console.log(err);
+			res.status(404).send('Could not delete user '+req.params.id);
+		});
+	}
+	else res.status(404).send('Can\'t find user');
 
+};
 module.exports.getUser = function(req,res){
 	var userType = req.baseUrl.split('/')[2];
 	var userModel;
@@ -199,7 +228,11 @@ module.exports.getAllUsers = function(req,res){
 		}
 	});
 };
-
+function getStormpathAccountByHref(client,href){
+	var stormPathAccountGet = Q.nbind(client.getAccount,client);
+	return stormPathAccountGet(href);
+};
+//This needs to be refactored to use the new promise implementation
 function getMongoUser(userModel,id,callback){
 	userModel.findOne({'_id':new ObjectId(id)},callback);
 };
