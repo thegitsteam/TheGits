@@ -155,35 +155,6 @@ createMongoUser = function(account,callback){
     });
 
 };
-module.exports.deleteUser = function(req,res){
-	var userType = req.baseUrl.split('/')[2];
-	var userModel;
-	var client =  req.app.get('stormpathClient');
-	if (userType == 'admin'){
-		userModel = Admin;
-	}
-	else if (userType == 'citycrew'){
-		userModel = City;
-	}
-	else
-		userModel = Law;
-	if(req.params.id){
-		userQuery = userModel.findOne({'_id':new ObjectId(req.params.id)});
-		userQuery.then(function(user){
-			return getStormpathAccountByHref(client,userQuery.href);
-		})
-		.then(function(stormpathAccount){
-			console.log(stormpathAccount);
-			stormpathAccount.delete();
-		})
-		.fail(function(err){
-			console.log(err);
-			res.status(404).send('Could not delete user '+req.params.id);
-		});
-	}
-	else res.status(404).send('Can\'t find user');
-
-};
 module.exports.getUser = function(req,res){
 	var userType = req.baseUrl.split('/')[2];
 	var userModel;
@@ -228,12 +199,75 @@ module.exports.getAllUsers = function(req,res){
 		}
 	});
 };
+module.exports.deleteUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	var client =  req.app.get('stormpathClient');
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	if(req.params.id){
+		
+		getMongoUser(userModel,req.params.id,function(err,account){
+			if(err){
+				console.log(err);
+				res.sendStatus(404);
+			}
+			else{
+				getStormpathAccountByHref(client,account.href)
+				.then(function(stormpathAccount){
+					console.log(stormpathAccount);
+					stormpathAccount.delete();
+					res.send(account)
+
+				})
+				.fail(function(err){
+					console.log(err);
+					res.sendStatus(404);
+				});
+
+			}
+		});
+	}
+	else{
+		res.sendStatus(400);
+	}
+
+};
+
 function getStormpathAccountByHref(client,href){
-	var stormPathAccountGet = Q.nbind(client.getAccount,client);
-	return stormPathAccountGet(href);
+	return Q.Promise(function(resolve,reject,retry){
+		client.getAccount(href,function(err,account){
+			if (err){
+				console.log(err);
+				reject(err);
+			}
+			else{
+				resolve(account);
+			}
+		});
+	});
 };
 //This needs to be refactored to use the new promise implementation
 function getMongoUser(userModel,id,callback){
 	userModel.findOne({'_id':new ObjectId(id)},callback);
 };
+function findMongoUserPromise(model,id){
+		return Q.promise(function (resolve,retry,notify){
+			getMongoUser(model,id,function(err,account){
+				if(err){
+					console.log(err);
+					reject(err);
+				}
+				else{
+					resolve(account);
+				}
+			});
+		});
 
+};
