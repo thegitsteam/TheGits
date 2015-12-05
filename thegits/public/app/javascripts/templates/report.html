@@ -13,7 +13,8 @@
                     </div>
                     <div class="modal-body">
                         <form role="form">
-                            <div class="form-group">
+                            <div class="form-group">     
+                                <div class="error buildingTypeError hide">Did not choose a building type</div>
                                 <label for="buildingType">Select Building Type:</label>
                                 <select class="form-control" id="buildingType" ng-model="report.buildingType" ng-change="setBuildingType()">
                                     <option>Apartment</option>
@@ -27,26 +28,28 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="error descriptionError hide">Did not enter a description</div>
                                 <label for="description">Description:</label>
                                 <textarea class="form-control input-sm" id="description" ng-model="report.description" ng-change="setDescription()"></textarea>
                             </div>
 
                             <div class="error addressError hide">Address is empty</div>
                             <div class="form-group">
-                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address" ng-model="report.address" ng-change="setAddress()" ng-maxlength="20">
+                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address (Optional)" ng-model="report.address" ng-change="setAddress()" ng-maxlength="20">
                             </div>
 
-                            <div class="error zipCodeError hide">Zipcode is incorrect</div>
+                            <div class="error zipCodeError hide">Zipcode is empty</div>
+                            <div class="error zipCodeNotNumberError hide">Zipcode is not a number</div>
                             <div class="form-group">
                                 <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zip Code" ng-model="report.zipCode" ng-change="setZipCode()">
                             </div>
 
-                            <div class="error zipCodeError hide">Cross Sreet 1 is incorrect</div>
+                            <div class="error crossStreet1Error hide">Cross Street 1 is incorrect</div>
                             <div class="form-group">
                                 <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="report.crossStreet1" ng-change="setCrossStreet1()">
                             </div>
 
-                            <div class="error zipCodeError hide">Cross Sreet 2 is incorrect</div>
+                            <div class="error crossStreet2Error hide">Cross Street 2 is incorrect</div>
                             <div class="form-group">
                                 <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="report.crossStreet2" ng-change="setCrossStreet2()">
                             </div>
@@ -76,50 +79,53 @@
                 </div>
                 <div class="panel-body">
                     <form role="form">
-                            <div class="form-group">
-                                <label for="buildingType">Select Building Type:</label>
-                                <select class="form-control" id="buildingType" ng-model="report.buildingType" ng-change="setBuildingType()">
-                                    <option>Apartment</option>
-                                    <option>Alley</option>
-                                    <option>Billboard</option>
-                                    <option>Business/Storefront</option>
-                                    <option>House</option>
-                                    <option>Highway</option>
-                                    <option>Public Utility</option>
-                                </select>
-                            </div>
+                        <div class="form-group">     
+                            <div class="error buildingTypeError hide">Did not choose a building type</div>
+                            <label for="buildingType">Select Building Type:</label>
+                            <select class="form-control" id="buildingType" ng-model="report.buildingType" ng-change="setBuildingType()">
+                                <option>Apartment</option>
+                                <option>Alley</option>
+                                <option>Billboard</option>
+                                <option>Business/Storefront</option>
+                                <option>House</option>
+                                <option>Highway</option>
+                                <option>Public Utility</option>
+                            </select>
+                        </div>
 
-                            <div class="form-group">
-                                <label for="description">Description:</label>
-                                <textarea class="form-control input-sm" id="description" ng-model="report.description" ng-change="setDescription()"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <div class="error descriptionError hide">Did not enter a description</div>
+                            <label for="description">Description:</label>
+                            <textarea class="form-control input-sm" id="description" ng-model="report.description" ng-change="setDescription()"></textarea>
+                        </div>
 
-                            <div class="error addressError hide">Address is empty</div>
-                            <div class="form-group">
-                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address" ng-model="report.address" ng-change="setAddress()" ng-maxlength="20">
-                            </div>
+                        <div class="error addressError hide">Address is empty</div>
+                        <div class="form-group">
+                            <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address (Optional)" ng-model="report.address" ng-change="setAddress()" ng-maxlength="20">
+                        </div>
 
-                            <div class="error zipCodeError hide">Zipcode is incorrect</div>
-                            <div class="form-group">
-                                <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zip Code" ng-model="report.zipCode" ng-change="setZipCode()">
-                            </div>
+                        <div class="error zipCodeError hide">Zipcode is empty</div>
+                        <div class="error zipCodeNotNumberError hide">Zipcode is not a number</div>
+                        <div class="form-group">
+                            <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zip Code" ng-model="report.zipCode" ng-change="setZipCode()">
+                        </div>
 
-                            <div class="error zipCodeError hide">Cross Sreet 1 is incorrect</div>
-                            <div class="form-group">
-                                <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="report.crossStreet1" ng-change="setCrossStreet1()">
-                            </div>
+                        <div class="error crossStreet1Error hide">Cross Street 1 is incorrect</div>
+                        <div class="form-group">
+                            <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="report.crossStreet1" ng-change="setCrossStreet1()">
+                        </div>
 
-                            <div class="error zipCodeError hide">Cross Sreet 2 is incorrect</div>
-                            <div class="form-group">
-                                <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="report.crossStreet2" ng-change="setCrossStreet2()">
-                            </div>
+                        <div class="error crossStreet2Error hide">Cross Street 2 is incorrect</div>
+                        <div class="form-group">
+                            <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="report.crossStreet2" ng-change="setCrossStreet2()">
+                        </div>
 
-                            <div class="submission">
-                                <div class="error submissionError hide">*Please resolve above errors*</div>
-                                <input type="submit" value="Submit" class="btn btn-primary btn-block" ng-model="report.submit" ng-click="submitReport()">
-                            </div>
-                            <img class="loading-gif hide" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
-                        </form>
+                        <div class="submission">
+                            <div class="error submissionError hide">*Please resolve above errors*</div>
+                            <input type="submit" value="Submit" class="btn btn-primary btn-block" ng-model="report.submit" ng-click="submitReport()">
+                        </div>
+                        <img class="loading-gif hide" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                    </form>
                 </div>
             </div>
         </div>
