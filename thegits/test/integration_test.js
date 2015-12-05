@@ -1,7 +1,8 @@
 var webdriver = require('selenium-webdriver');
 var until = webdriver.until;
 var chai = require('chai');
-test = require('selenium-webdriver/testing');
+var test = require('selenium-webdriver/testing');
+var util = require('selenium-webdriver/http/util');
 var expect = chai.expect;
 chai.use(require('chai-as-promised'));
 var driver = new webdriver.Builder().
@@ -13,6 +14,7 @@ driver.manage().timeouts().implicitlyWait(5000);
 test.describe('Test User Login', function(){
 	test.it('Should go to homepage', function(done) {
 		driver.get('http://54.213.220.101:3000/');
+		//util.waitForUrl('http://54.213.220.101:3000/#/home',15000);
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
 			done();
 	});
@@ -24,7 +26,7 @@ test.describe('Test User Login', function(){
 	});
 
 	test.it('Should log in with valid credentials', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]'), 10000));
+		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]'), 10000));
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('thistest@testthis.com')
 		driver.findElement({xpath: '//*[@id="password"]'}).sendKeys('Testing1');
 		driver.findElement({className: 'btn'}).click();
@@ -32,14 +34,18 @@ test.describe('Test User Login', function(){
 	});
 
 	test.it('Should return to home page',function(done) {
-		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
+		//util.waitForUrl('http://54.213.220.101:3000/#/home',15000);
+		//driver.wait(function() {
+		//	return driver.getCurrentUrl() === 'http://54.213.220.101:3000/#/home'
+		//}, 10000);
 		done();
 	});
 });
 
 test.describe('Test User Creation(as admin)', function() {
-
-	test.it('Should click to User Creation page', function(done) {
+/*	test.it('Should click to User Creation page', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Users')),10000,'Check login credentials');
 		driver.findElement(webdriver.By.linkText('Users')).click();
 		driver.findElement(webdriver.By.linkText('Create New User')).click();
 		//driver.sleep(1000);
@@ -47,7 +53,7 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should create admin', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
+		driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
 		driver.findElement({xpath: '//*[@id="accountType"]/option[2]'}).click();
 		driver.findElement({xpath: '//*[@id="firstName"]'}).sendKeys('Selenium');
 		driver.findElement({xpath: '//*[@id="middleInitial"]'}).sendKeys('T');
@@ -71,7 +77,7 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should create CityCrew', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
+		driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
 		driver.findElement({xpath: '//*[@id="accountType"]/option[3]'}).click();
 		driver.findElement({xpath: '//*[@id="firstName"]'}).sendKeys('Selenium');
 		driver.findElement({xpath: '//*[@id="middleInitial"]'}).sendKeys('T');
@@ -95,7 +101,7 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should create Law', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
+		driver.wait(webdriver.until.elementLocated(webdriver.By.id('accountType')), 10000);
 		driver.findElement({xpath: '//*[@id="accountType"]/option[4]'}).click();
 		driver.findElement({xpath: '//*[@id="firstName"]'}).sendKeys('Selenium');
 		driver.findElement({xpath: '//*[@id="middleInitial"]'}).sendKeys('T');
@@ -112,19 +118,19 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should logout', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
 		done();
 	});
 
 	test.it('Should click to Login page', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
 		done();
 	});
 
 	test.it('Should login with new admin', function(done) {
-		//driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
+		driver.wait(until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('admin@selenium.com')
 		driver.findElement({xpath: '//*[@id="password"]'}).sendKeys('Testing1');
 		driver.findElement({className: 'btn'}).click();
@@ -133,21 +139,21 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should logout', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
 		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
 		done();
 	});
 
 	test.it('Should click to Login page', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/login');
 		done();
 	});
 
 	test.it('Should login with new CityCrew', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
+		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('citycrew@selenium.com')
 		driver.findElement({xpath: '//*[@id="password"]'}).sendKeys('Testing1');
 		driver.findElement({className: 'btn'}).click();
@@ -155,21 +161,21 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should logout', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
 		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
 		done();
 	});
 
 	test.it('Should click to Login page', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/login');
 		done();
 	});
 	
 	test.it('Should login with new Law', function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
+		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('law@selenium.com')
 		driver.findElement({xpath: '//*[@id="password"]'}).sendKeys('Testing1');
 		driver.findElement({className: 'btn'}).click();
@@ -177,22 +183,25 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should return to home page',function(done) {
-		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
+		//util.waitForUrl('http://54.213.220.101:3000/#/home',15000);
+		//driver.wait(function() {
+		//	return driver.getCurrentUrl() === 'http://54.213.220.101:3000/#/home'
+		//}, 10000);
 		done();
 	});
 
 	test.it('Logging out...', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
 		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
 		done();
-	});
+	});*/
 });
 
 test.describe('Test Create Reports', function() {
 	test.it('Logging back in as admin...', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
 		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('thistest@testthis.com')
@@ -207,7 +216,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click to Reports page', function(done) {
-		driver.sleep(2000);
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Create Report')),10000,'Check login credentials');
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/ul/li[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/report');
 		done();
@@ -216,11 +225,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Apartment)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[2]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Apartment');
 		driver.findElement({xpath: '//*[@id="address"]'}).sendKeys('123 Selenium Lane');
@@ -229,6 +239,8 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
+		////driver.wait(webdriver.until.elementLocated(webdriver.By.className('modal-open')),10000');
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
@@ -236,11 +248,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Alley)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[2]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Alley');
 		driver.findElement({xpath: '//*[@id="address"]'}).sendKeys('123 Mocha Lane');
@@ -249,6 +262,7 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotVisible(driver.findElement({name: 'Reporting'})),10000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
@@ -256,11 +270,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Billboard)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="buildingType"]')), 10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[3]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Billboard');
@@ -270,6 +285,7 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
@@ -277,11 +293,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Business/Storefront)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="buildingType"]')), 10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[4]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Business/Storefront');
@@ -291,6 +308,7 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
@@ -298,11 +316,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(House)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="buildingType"]')), 10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[5]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('House');
@@ -313,17 +332,19 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		done();
 	});
 
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Highway)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="buildingType"]')), 10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[6]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Highway');
@@ -333,6 +354,7 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
@@ -340,11 +362,12 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click Create Report', function(done){
 		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
 		//driver.wait(until.elementIsSelected(driver.findElement({className: 'modal-open'})),10000);
-		driver.sleep(2000);
+		//driver.sleep(2000);
 		done();
 	});
 
 	test.it('Should Create a Test Report(Public Utility)', function(done) {
+		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		//driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="buildingType"]')), 10000);
 		driver.findElement({xpath: '//*[@id="buildingType"]/option[7]'}).click();
 		driver.findElement({xpath: '//*[@id="description"]'}).sendKeys('Public Utility');
@@ -354,6 +377,7 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys('Chai Street');
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		//driver.wait(until.elementIsNotSelected(driver.findElement({className: 'modal-open'})),10000);
+		//driver.wait(webdriver.until.stalenessOf(driver.findElement({className: 'modal-open'})),10000);
 		driver.sleep(2000);
 		done();
 	});
