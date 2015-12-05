@@ -6,6 +6,7 @@ var City = require('../../models/users/citycrew');
 var Admin = require('../../models/users/admin');
 var Law = require('../../models/users/law-enforcement');
 var ObjectId = require('mongoose').Types.ObjectId; 
+mongoose.Promise = require('q').Promise;
 
 module.exports.getAcountInfo = function(req,res){
 	var userInfo = {};
@@ -97,7 +98,7 @@ function addAccountToGroup(createdAccount,group){
 		});
 	});
 };
-
+//Need to rework this. Mongoose has its own promise implementation and is easily adapted to q
 function createMongoUserPromise(account){
 	return Q.Promise(function(resolve,reject,notify){
 		createMongoUser(account,function(err,data){
@@ -154,7 +155,6 @@ createMongoUser = function(account,callback){
     });
 
 };
-
 module.exports.getUser = function(req,res){
 	var userType = req.baseUrl.split('/')[2];
 	var userModel;
@@ -199,8 +199,75 @@ module.exports.getAllUsers = function(req,res){
 		}
 	});
 };
+module.exports.deleteUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	var client =  req.app.get('stormpathClient');
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	if(req.params.id){
+		
+		getMongoUser(userModel,req.params.id,function(err,account){
+			if(err){
+				console.log(err);
+				res.sendStatus(404);
+			}
+			else{
+				getStormpathAccountByHref(client,account.href)
+				.then(function(stormpathAccount){
+					console.log(stormpathAccount);
+					stormpathAccount.delete();
+					res.send(account)
 
+				})
+				.fail(function(err){
+					console.log(err);
+					res.sendStatus(404);
+				});
+
+			}
+		});
+	}
+	else{
+		res.sendStatus(400);
+	}
+
+};
+
+function getStormpathAccountByHref(client,href){
+	return Q.Promise(function(resolve,reject,retry){
+		client.getAccount(href,function(err,account){
+			if (err){
+				console.log(err);
+				reject(err);
+			}
+			else{
+				resolve(account);
+			}
+		});
+	});
+};
+//This needs to be refactored to use the new promise implementation
 function getMongoUser(userModel,id,callback){
 	userModel.findOne({'_id':new ObjectId(id)},callback);
 };
+function findMongoUserPromise(model,id){
+		return Q.promise(function (resolve,retry,notify){
+			getMongoUser(model,id,function(err,account){
+				if(err){
+					console.log(err);
+					reject(err);
+				}
+				else{
+					resolve(account);
+				}
+			});
+		});
 
+};

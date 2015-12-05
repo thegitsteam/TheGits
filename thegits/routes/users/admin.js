@@ -9,15 +9,7 @@ router.get('/',stormpath.groupsRequired(['Admin']),userContoller.getAllUsers);
 router.post('/',stormpath.groupsRequired(['Admin']),userMiddleware.getAcountFormInfo,userContoller.createAccount);
 
 router.get('/:id',stormpath.groupsRequired(['Admin']),userContoller.getUser);
-router.delete('/:id',function(req,res){
-	if(req.params.id){
-		res.status(200);
-		res.send('DELETE ' + req.params.id);
-	}
-	else{
-		res.send('no id');
-	}
-});
+router.delete('/:id',userContoller.deleteUser);
 router.put('/:id',function(req,res){
 	if(req.params.id){
 		res.status(200);

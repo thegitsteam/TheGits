@@ -5,7 +5,6 @@ var stormpath_config = {
       fields:{
         username:{
           required:true,
-          placeholder: 'id'
         }
       }
     },
