@@ -110,7 +110,6 @@ angular.module('gitsApp.controllers')
 
                 $scope.toggleLoading();
 
-                alert($scope.zipCode);
                 report.create(reportData).success(function(data) {
                     if ($scope.reports) {
                         $scope.reports.push(data);
