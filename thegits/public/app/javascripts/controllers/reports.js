@@ -53,8 +53,6 @@ angular.module('gitsApp.controllers')
 
             $scope.toggleLoading();
 
-            alert(JSON.stringify(reportData));
-
             report.create(reportData).success(function(data) {
             	if ($scope.reports) {
                 	$scope.reports.push(data);
