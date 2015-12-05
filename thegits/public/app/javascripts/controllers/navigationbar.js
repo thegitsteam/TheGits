@@ -17,6 +17,10 @@ angular.module('gitsApp.controllers')
             auth.logout();
         };
 
+        $scope.isAuthorizedToSeeIncidents = function() {
+            return !auth.isCityCrew();
+        };
+
         $scope.isAdmin = function() {
             var userType = auth.getUserType();
             if (userType === 'Admin') {
