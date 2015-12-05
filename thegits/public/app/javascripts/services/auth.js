@@ -36,6 +36,15 @@ angular.module('gitsApp.services')
                 return null;
             }
         };
+        
+        auth.isCityCrew = function() {
+            var userType = auth.getUserType();
+            if (userType === 'City') {
+                return true;
+            } else {
+                return false;
+            }
+        };
 
         // Triangle of DOOOOOOM
         auth.login = function(user) {
