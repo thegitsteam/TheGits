@@ -103,13 +103,14 @@ angular.module('gitsApp.controllers')
 
                 var reportData = {
                     date: Date(),
-                    buildingtype: $scope.buildingType,
+                    buildingType: $scope.buildingType,
                     description: $scope.description,
                     location: location
                 };
 
                 $scope.toggleLoading();
 
+                alert($scope.zipCode);
                 report.create(reportData).success(function(data) {
                     if ($scope.reports) {
                         $scope.reports.push(data);

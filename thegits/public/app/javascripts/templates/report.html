@@ -147,15 +147,23 @@
                         <thead>
                             <tr>
                                 <th><a href="#">Date</a></th>
-                                <th><a href="#">Address</a></th>
                                 <th><a href="#">Description</a></th>
+                                <th><a href="#">Building Type</a></th>
+                                <th><a href="#">Address</a></th>
+                                <th><a href="#">Zip Code</a></th>
+                                <th><a href="#">Cross Street 1</a></th>
+                                <th><a href="#">Cross Street 2</a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="report in reports | orderBy: '-date'">
                                 <td>{{ report.date }}</td>
-                                <td>{{ report.location.address }}</td>
                                 <td>{{ report.description }}</td>
+                                <td>{{ report.buildingType }}</td>
+                                <td>{{ report.location.address }}</td>
+                                <td>{{ report.location.zip }}</td>
+                                <td>{{ report.location.crossStreet1 }}</td>
+                                <td>{{ report.location.crossStreet2 }}</td>
                             </tr>
                         </tbody>
                     </table>
