@@ -31,3 +31,10 @@ npm-debug.log
 
 # sass-cache used for precompiling css
 **/.sass-cache/*
+
+# stylesheet stuff
+style.css
+style.css.map
+
+.DS_Store
+

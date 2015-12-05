@@ -51,8 +51,11 @@
                                 <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="report.crossStreet2" ng-change="setCrossStreet2()">
                             </div>
 
-                            <div class="error submissionError hide">*Please resolve above errors*</div>
-                            <input type="submit" value="Submit" class="btn btn-primary btn-block" ng-model="report.submit" ng-click="submitReport()">
+                            <div class="submission">
+                                <div class="error submissionError hide">*Please resolve above errors*</div>
+                                <input type="submit" value="Submit" class="btn btn-primary btn-block" ng-model="report.submit" ng-click="submitReport()">
+                            </div>
+                            <img class="loading-gif hide" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -71,7 +74,10 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Reports</h3>
                 </div>
-                <div class="panel-body report-view">
+                <div class="report-loading">
+                    <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                </div>
+                <div class="panel-body report-view hide">
                     <table class="table table-bordered table-hover table-condensed">
                         <thead>
                             <tr>
@@ -93,4 +99,3 @@
         </div>
     </div>
 </div>
-
