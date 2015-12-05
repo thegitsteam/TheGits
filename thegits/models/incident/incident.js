@@ -6,19 +6,20 @@ var incidentGpsSchema = require('./incident-gps');
 var locationSchema = require('./location');
 
 var incidentSchema = new mongoose.Schema({
-    cityCrewId: Number,
-    lawEnfEmpNr: Number,
-    cityCrewSupervisor: Number,
-    lawEnfSupervisor: Number,
-    graffitiInfo: String,
+    cityCrewId: String,
+    lawEnforcementEmployeeNumber: String,
+    cityCrewSupervisorEmployeeNumber: String,
+    lawEnfSupervisorEmployeeNumber: String,
+    graffitiInformation: String,
+    dateCreated:{ type: Date, default: Date.now },
     dateOnSite: {
         type: Date,
         index: true
     },
-    scale: Number,
+    scaleOfCleanUp: Number,
     typeOfBuilding: String,
     location: locationSchema,
-    gpsCoord: incidentGpsSchema,
+    gpsCoordinates: incidentGpsSchema,
     moniker: String,
     images: String,
     suspects: [{type: mongoose.Schema.Types.ObjectId, ref: 'suspect'}],
