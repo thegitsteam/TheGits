@@ -7,12 +7,7 @@ angular.module('gitsApp.controllers')
         if (!auth.isLoggedIn()) {
             window.location.href = '/#/login';
         }
-        // Get all reports upon load
-        report.getAll().success(function(data) {
-            $('.report-loading').toggleClass('hide');
-            $scope.reports = data;
-            $('.report-view').toggleClass('hide');
-        });
+
 
         $scope.isAuthorizedToSeeReports = function() {
             if (auth.isCityCrew()) {
@@ -21,6 +16,16 @@ angular.module('gitsApp.controllers')
                 return true;
             }
         };
+
+        // Get all reports upon load
+        if ($scope.isAuthorizedToSeeReports()) {
+	        report.getAll().success(function(data) {
+	            $('.report-loading').toggleClass('hide');
+	            $scope.reports = data;
+	            $('.report-view').toggleClass('hide');
+	        });
+	    }
+
 
         $scope.setBuildingType = function() {
             $scope.buildingType = $('#buildingType option:selected').val();
@@ -65,9 +70,13 @@ angular.module('gitsApp.controllers')
             $scope.toggleLoading();
 
             report.create(reportData).success(function(data) {
-                $scope.reports.push(data);
+            	if ($scope.reports) {
+                	$scope.reports.push(data);
+            	}
                 $scope.toggleLoading();
-                $('#reportingModal').modal('toggle');
+                if ($scope.isAuthorizedToSeeReports()) { 
+	                $('#reportingModal').modal('toggle');
+                }
                 $('.form-control').val('');
             });
         };
