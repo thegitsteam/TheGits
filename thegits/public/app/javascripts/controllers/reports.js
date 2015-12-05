@@ -10,9 +10,10 @@ angular.module('gitsApp.controllers')
 
         // Get all reports upon load
         report.getAll().success(function(data) {
+            $('.report-loading').toggleClass('hide');
             $scope.reports = data;
+            $('.report-view').toggleClass('hide');
         });
-
 
         $scope.setBuildingType = function() {
             $scope.buildingType = $('#buildingType option:selected').val();
@@ -54,9 +55,19 @@ angular.module('gitsApp.controllers')
                 location: location
             };
 
+            $scope.toggleLoading();
+
             report.create(reportData).success(function(data) {
                 $scope.reports.push(data);
+                $scope.toggleLoading();
+                $('#reportingModal').modal('toggle');
+                $('.form-control').val('');
             });
+        };
+
+        $scope.toggleLoading = function() {
+            $('.submission').toggleClass('hide');
+            $('.loading-gif').toggleClass('hide');
         };
     }
 ]);
