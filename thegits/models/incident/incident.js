@@ -12,7 +12,7 @@ var incidentSchema = new mongoose.Schema({
     lawEnfSupervisor: Number,
     graffitiInfo: String,
     dateOnSite: {
-        type: String,
+        type: Date,
         index: true
     },
     scale: Number,
@@ -22,8 +22,6 @@ var incidentSchema = new mongoose.Schema({
     moniker: String,
     images: String,
     suspects: [{type: mongoose.Schema.Types.ObjectId, ref: 'suspect'}],
-    images: String,
-    suspects: String,
     status: String
 });
 
