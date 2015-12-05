@@ -60,7 +60,7 @@ angular.module('gitsApp.controllers')
             report.create(reportData).success(function(data) {
                 $scope.reports.push(data);
                 $scope.toggleLoading();
-                $('#myModal').modal('toggle');
+                $('#reportingModal').modal('toggle');
                 $('.form-control').val('');
             });
         };
