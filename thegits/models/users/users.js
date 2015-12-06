@@ -12,7 +12,7 @@ var userSchema = new mongoose.Schema({
     href: String,
     accountType: String,
     isSupervisor: Boolean,
-    supervisorID: Number
+    supervisorID: String
 });
 
 module.exports = mongoose.model('user', userSchema);

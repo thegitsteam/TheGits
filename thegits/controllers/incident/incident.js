@@ -40,13 +40,11 @@ module.exports.getIncident = function(req,res){
 module.exports.deleteIncident = function(req,res){
 	if(req.params.id){
 		Incident.remove({ '_id': req.params.id }, function(err) {
-    		if (!err) {
-            	res.send('deleted');
-    		}
-    		else {
-            	res.json(err);
-    		}
-		});	
+            if(err){
+                console.log(err);
+                res.send()
+            }
+        });	
 	}
 	else res.send('invalid id');
 };
@@ -69,9 +67,13 @@ module.exports.modifyIncident = function(req,res){
     }
 };
 module.exports.getAllIncidents = function(req,res){
-    Incident.find({},function(err,incidents){
-        if(err){
-            res.status(404).send('Incidents not found');
+    Incident
+    .find()
+    .populate('suspects')
+    .exec(function(err,incidents){
+        if (err){
+            console.log(err);
+            res.sendStatus(404);
         }
         else{
             res.send(incidents);

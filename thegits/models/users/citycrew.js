@@ -12,7 +12,7 @@ var cityCrewWorkerSchema = new mongoose.Schema({
     href: String,
     accountType: String,
     isSupervisor: Boolean,
-    supervisorID: Number
+    supervisorID: String
 });
 
 //Which methods should we hav efor the models?
