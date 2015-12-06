@@ -7,12 +7,12 @@ var nameSchema = require('./name');
 var userSchema = new mongoose.Schema({
     username: String,
     name: nameSchema,
-    employeeNumber: Number,
+    employeeNumber: String,
     employeeTitle: String,
     href: String,
     accountType: String,
     isSupervisor: Boolean,
-    supervisorID: Number
+    supervisorID: String
 });
 
 module.exports = mongoose.model('user', userSchema);

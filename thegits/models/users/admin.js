@@ -8,7 +8,7 @@ var nameSchema = require('./name');
 var adminSchema = new mongoose.Schema({
     username: String,
     name: nameSchema,
-    employeeNumber: Number,
+    employeeNumber: String,
     employeeTitle: String,
     href: String,
     isSupervisor: Boolean,

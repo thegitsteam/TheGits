@@ -34,6 +34,17 @@ module.exports.createSuspect = function(req,res){
     });
 
 };
+module.exports.modifySuspect = function(req,res){
+    var suspectId = req.params.id;
+    var modifiedSuspect = req.body;
+    Suspect.findOneAndUpdate(suspectId,modifiedSuspect)
+    .then(function(suspect){
+        if(suspect){
+            res.send(suspect);
+        }
+        else res.sendStatus(400);
+    });
+};
 module.exports.getAllSuspects = function(req,res){
     Suspect.find({},function(err,suspects){
         if(err){

@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 var locationSchema = new mongoose.Schema({
     address: String,
-    zip: String,
+    zipCode: String,
     crossStreet1: String,
     crossStreet2: String
 });

@@ -12,7 +12,7 @@ var lawEnfOffSchema = new mongoose.Schema({
     href: String,
     accountType: String,
     isSupervisor: Boolean,
-    supervisorID: Number
+    supervisorID: String
 });
 
 
