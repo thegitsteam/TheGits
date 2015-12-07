@@ -14,36 +14,16 @@
                     <div class="modal-body">
                         <form role="form">
                             <!-- Incident Record Info-->
-                            <h5>Incident Record Information</h5>
-                            <div class="form-group">
-                                <div class="error lawEnforcementEmployeeNumberError hide">Did not enter employee number</div>
-                                <input type="text" name="lawEnforcementEmployeeNumber" id="lawEnforcementEmployeeNumber" class="form-control input-sm" placeholder="Law Enforcement Employee Number" ng-model="" ng-change="">
-                            </div>
-
-                            <div class="form-group">
-                                <div class="error incidentRecordIdError hide">Did not enter incident record ID</div>
-                                <input type="text" name="incidentRecordId" id="incidentRecordId" class="form-control input-sm" placeholder="Incident Record ID" ng-model="" ng-change="">
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <div class="error dateCreatedError hide">Did not enter date this record was created</div>
-                                        <input type="text" name="dateCreated" id="dateCreated" class="form-control input-sm" placeholder="Date Created" ng-model="" ng-change="">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6"> 
-                                    <div class="form-group"> 
-                                        <div class="error statusError hide">Did not choose a status</div>
-                                        <select class="form-control input-sm" id="status" ng-model="" ng-change="setStatus()">
-                                            <option>Status?</option>
-                                            <option>New</option>
-                                            <option>In Process</option>
-                                            <option>In Litigation</option>
-                                            <option>Resolved</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <h5>Incident Record Information</h5> 
+                            <div class="form-group"> 
+                                <div class="error statusError hide">Did not choose a status</div>
+                                <select class="form-control input-sm" id="status" ng-model="" ng-change="setStatus()">
+                                    <option>Status?</option>
+                                    <option>New</option>
+                                    <option>In Process</option>
+                                    <option>In Litigation</option>
+                                    <option>Resolved</option>
+                                </select>
                             </div>
                             <hr>
 
@@ -213,6 +193,38 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default center-block" data-dismiss="modal">Cancel</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Incidents</h3>
+                </div>
+                <div class="report-loading">
+                    <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                </div>
+                <div class="panel-body report-view hide">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th><a href="#">Status</a></th>
+                                <th><a href="#">City Crew ID</a></th>
+                                <th><a href="#">Address</a></th>
+                                <th><a href="#">Suspect Name</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="incident in incidents">
+                                <td>{{ incident.status }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
