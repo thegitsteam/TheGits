@@ -18,8 +18,8 @@ angular.module('gitsApp.controllers')
             $scope.status = $('#status option:selected').val();
         };
 
-        $scope.setGraffitiInformation = function(){
-            $scope.graffitiInformation = $('#graffitiInformation').val()
+        $scope.setGraffitiInfo = function(){
+            $scope.graffitiInfo = $('#graffitiInfo').val()
         };
 
         $scope.setSupervisorName = function() {
@@ -34,8 +34,8 @@ angular.module('gitsApp.controllers')
             $scope.dateOnSite = Date(date);
         };
 
-        $scope.setScaleOfCleanup = function() {
-            $scope.scaleOfCleanup = $('#scaleOfCleanup option:selected').val();
+        $scope.setScaleOfCleanUp = function() {
+            $scope.scaleOfCleanUp = $('#scaleOfCleanUp option:selected').val();
         };
 
         $scope.setAddress = function() {
@@ -145,7 +145,7 @@ angular.module('gitsApp.controllers')
             }*/
 
             if (!hasError) {
-                var locationData = {
+                var location = {
                     address: $scope.address,
                     zipCode: $scope.zipCode,
                     crossStreet1: $scope.crossStreet1,
@@ -153,18 +153,18 @@ angular.module('gitsApp.controllers')
                 }
 
                 var gpsCoordinates = [$scope.latitude, $scope.longitude];
-                alert($scope.graffitiInformation);
+                alert($scope.scaleOfCleanUp);
                 var incidentData = {
                     cityCrewId: $scope.cityCrewId,
                     lawEnforcementEmployeeNumber: String,
                     cityCrewSupervisorEmployeeNumber: String,
                     lawEnfSupervisorEmployeeNumber: String,
-                    graffitiInfo: $scope.graffitiInformation,
+                    graffitiInfo: $scope.graffitiInfo,
                     dateCreated:{ type: Date, default: Date.now },
                     dateOnSite: $scope.dateOnSite,
-                    scaleOfCleanUp: $scope.scaleOfCleanup,
+                    scaleOfCleanUp: $scope.scaleOfCleanUp,
                     typeOfBuilding: $scope.typeOfBuilding,
-                    location: locationData,
+                    location: location,
                     gpsCoordinates: gpsCoordinates,
                     moniker: $scope.moniker,
                     images: String,

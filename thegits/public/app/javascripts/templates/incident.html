@@ -26,8 +26,8 @@
                             </div>
 
                             <div class="form-group">
-                                <div class="error graffitiInformationError hide">Did not enter a description</div>
-                                <textarea class="form-control input-sm" id="graffitiInformation" placeholder="Enter a description of the graffiti" ng-model="incident.graffitiInformation" ng-change="setGraffitiInformation()"></textarea>
+                                <div class="error graffitiInfoError hide">Did not enter a description</div>
+                                <textarea class="form-control input-sm" id="graffitiInfo" placeholder="Enter a description of the graffiti" ng-model="incident.graffitiInfo" ng-change="setGraffitiInfo()"></textarea>
                             </div>
                             <hr>
 
@@ -53,8 +53,8 @@
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group"> 
-                                        <div class="error scaleOfCleanupError hide">Did not choose a status</div>
-                                        <select class="form-control input-sm" id="scaleOfCleanup" ng-model="incident.scaleOfCleanup" ng-change="setScaleOfCleanup()">
+                                        <div class="error scaleOfCleanUpError hide">Did not choose a status</div>
+                                        <select class="form-control input-sm" id="scaleOfCleanUp" ng-model="incident.scaleOfCleanUp" ng-change="setScaleOfCleanUp()">
                                             <option>Scale of Cleanup?</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -209,6 +209,13 @@
                                 <th><a href="#">City Crew ID</a></th>
                                 <th><a href="#">Description</a></th>
                                 <th><a href="#">Moniker</a></th>
+                                <th><a href="#">Date on Site</a></th>
+                                <th><a href="#">Type of Structure</a></th>
+                                <th><a href="#">Scale of Cleanup</a></th>
+                                <th><a href="#">Address</a></th>
+                                <th><a href="#">Zipcode</a></th>
+                                <th><a href="#">Cross Street 1</a></th>
+                                <th><a href="#">Cross Street 2</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -217,6 +224,13 @@
                                 <td>{{ incident.cityCrewId }}</td>
                                 <td>{{ incident.graffitiInfo }}</td>
                                 <td>{{ incident.moniker }}</td>
+                                <td>{{ incident.dateOnSite }}</td>
+                                <td>{{ incident.typeOfBuilding }}</td>
+                                <td>{{ incident.scaleOfCleanUp }}</td>
+                                <td>{{ incident.location.address }}</td>
+                                <td>{{ incident.location.zip }}</td>
+                                <td>{{ incident.location.crossStreet1 }}</td>
+                                <td>{{ incident.location.crossStreet2 }}</td>
                             </tr>
                         </tbody>
                     </table>

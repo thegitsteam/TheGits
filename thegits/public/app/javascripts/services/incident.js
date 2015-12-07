@@ -20,7 +20,6 @@ angular.module('gitsApp.services')
         incident.create = function(data) {
             var incident = JSON.stringify(data);
             return $http.post('/incidents', incident).success(function(data) {
-                alert(JSON.stringify(data));
                 return data;
             });
         };
