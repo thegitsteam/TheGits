@@ -153,7 +153,7 @@ angular.module('gitsApp.controllers')
                 }
 
                 var gpsCoordinates = [$scope.latitude, $scope.longitude];
-                alert($scope.scaleOfCleanUp);
+                
                 var incidentData = {
                     cityCrewId: $scope.cityCrewId,
                     lawEnforcementEmployeeNumber: String,

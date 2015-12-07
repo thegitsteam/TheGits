@@ -4790,6 +4790,11 @@ html, body {
 .navbar-brand {
   padding-bottom: 50px; }
 
+#nav-custom-font {
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 5px; }
+
 /* Reports */
 .report-view {
   text-align: left;
