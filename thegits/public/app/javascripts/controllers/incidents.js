@@ -156,19 +156,13 @@ angular.module('gitsApp.controllers')
                 
                 var incidentData = {
                     cityCrewId: $scope.cityCrewId,
-                    lawEnforcementEmployeeNumber: String,
-                    cityCrewSupervisorEmployeeNumber: String,
-                    lawEnfSupervisorEmployeeNumber: String,
-                    graffitiInfo: $scope.graffitiInfo,
-                    dateCreated:{ type: Date, default: Date.now },
+                    graffitiInformation: $scope.graffitiInfo,
                     dateOnSite: $scope.dateOnSite,
                     scaleOfCleanUp: $scope.scaleOfCleanUp,
                     typeOfBuilding: $scope.typeOfBuilding,
                     location: location,
                     gpsCoordinates: gpsCoordinates,
                     moniker: $scope.moniker,
-                    images: String,
-                    suspects: $scope.suspects,
                     status: $scope.status
                 };
 
