@@ -97,53 +97,6 @@ angular.module('gitsApp.controllers')
 
         $scope.submitIncident = function() {
             var hasError = false;
-
-            /*// Check building type
-            if (!$scope.buildingType) {
-                $('.buildingTypeError').removeClass('hide');
-                    hasError = true;
-            } else {
-                $('.buildingTypeError').addClass('hide');
-            }
-
-            // Check Zipcode is number
-            if (isNaN($('#zipCode').val())) {
-                $('.zipCodeNotNumberError').removeClass('hide');
-                    hasError = true;
-            } else {
-                $('.zipCodeNotNumberError').addClass('hide');
-            }
-
-            // Check Zipcode
-            if ($('#zipCode').val() === '') {
-                $('.zipCodeError').removeClass('hide');
-                hasError = true;
-            } else {
-                $('.zipCodeError').addClass('hide');
-            }
-
-            // Check Cross Street 1
-            if ($('#crossStreet1').val() === '') {
-                $('.crossStreet1Error').removeClass('hide');
-                hasError = true;
-            } else {
-                $('.crossStreet1Error').addClass('hide');
-            }
-
-            // Check Cross Street 2
-            if ($('#crossStreet2').val() === '') {
-                $('.crossStreet2Error').removeClass('hide');
-                hasError = true;
-            } else {
-                $('.crossStreet2Error').addClass('hide');
-            }
-
-            if (hasError) {
-                $('.submissionError').removeClass('hide');
-            } else {
-                $('.submissionError').addClass('hide');
-            }*/
-
             if (!hasError) {
                 var location = {
                     address: $scope.address,
@@ -161,7 +114,7 @@ angular.module('gitsApp.controllers')
                     lawEnfSupervisorEmployeeNumber: "01",
                     graffitiInfo: $scope.graffitiInfo,
                     dateCreated:{ },
-                    dateOnSite: $scope.dateOnSite,
+                    dateOnSite: Date('2015-12-5'),
                     scaleOfCleanUp: $scope.scaleOfCleanUp,
                     typeOfBuilding: $scope.typeOfBuilding,
                     location: location,
