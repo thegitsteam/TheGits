@@ -34,7 +34,7 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should go to homepage', function(done) {
-		driver.get('http://54.213.220.101:3000/');
+		driver.get('http://localhost:3000/');
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
 			done();
 	});
