@@ -77,6 +77,7 @@ angular.module('gitsApp.services')
                     window.location.href = '/';
                 });
             });
+
         };
 
         return auth;

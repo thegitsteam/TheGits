@@ -132,6 +132,9 @@ angular.module('gitsApp.controllers')
             }
 
             if (!hasError) {
+
+                $scope.toggleLoading();
+
                 var registration = {
                     username: $scope.username,
                     firstName: $scope.firstName,
@@ -161,8 +164,17 @@ angular.module('gitsApp.controllers')
                         break;
                 }
 
-                auth.register(route, registration);
+                auth.register(route, registration).error(function(data) {
+                    $scope.stormpathError = data;
+                    $('.stormpathError').removeClass('hide');
+                    $scope.toggleLoading();
+                });
             }
         }
+
+        $scope.toggleLoading = function() {
+            $('.submission').toggleClass('hide');
+            $('.loading-gif').toggleClass('hide');
+        };
     }
 ]);

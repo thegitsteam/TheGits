@@ -38,9 +38,17 @@ angular.module('gitsApp.controllers')
                     username: $scope.username,
                     password: $scope.password
                 };
+
+                $scope.toggleLoading();
+
                 auth.login(login);
             }
         }
+
+        $scope.toggleLoading = function() {
+            $('.submission').toggleClass('hide');
+            $('.loading-gif').toggleClass('hide');
+        };
 
         $scope.logout = function() {
             login.logout();
