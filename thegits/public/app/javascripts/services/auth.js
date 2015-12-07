@@ -69,6 +69,7 @@ angular.module('gitsApp.services')
                     window.location = '/';
                 });
             });
+
         };
 
         return auth;
