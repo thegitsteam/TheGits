@@ -1,0 +1,245 @@
+<div class="container">
+    <div class="row centered-form">
+        <!-- Modal Trigger -->
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#incidentModal">Create Incident</button>
+        <!-- Modal -->
+        <div id="incidentModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Incident</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <!-- Incident Record Info-->
+                            <h5>Incident Record Information</h5>
+                            <div class="form-group"> 
+                                <div class="error statusError hide">Did not choose a status</div>
+                                <select class="form-control input-sm" id="status" ng-model="incident.status" ng-change="setStatus()">
+                                    <option>New</option>
+                                    <option>In Process</option>
+                                    <option>In Litigation</option>
+                                    <option>Resolved</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="error graffitiInfoError hide">Did not enter a description</div>
+                                <textarea class="form-control input-sm" id="graffitiInfo" placeholder="Enter a description of the graffiti" ng-model="incident.graffitiInfo" ng-change="setGraffitiInfo()"></textarea>
+                            </div>
+                            <hr>
+
+                            <h5>City Crew Information</h5>
+                            <div class="form-group">
+                                <div class="error supervisorNameError hide">Supervisor Name was chosen</div>
+                                <select class="form-control input-sm" id="supervisorName" ng-model="incident.supervisorName" ng-change="setSupervisorName()">
+                                    <option>Supervisor Genne</option>
+                                    <option>Supervisor Mahah</option>
+                                    <option>Supervisor Enrick</option>
+                                    <option>Supervisor Salmon</option>
+                                    <option>Supervisor Vite</option>
+                                    <option>Supervisor Dee</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="error cityCrewIdError hide">City Crew ID was not chosen</div>
+                                <input type="text" name="cityCrewId" id="cityCrewId" class="form-control input-sm" placeholder="City Crew ID" ng-model="incident.cityCrewId" ng-change="setCityCrewId()">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="error dateOnSiteError hide">Date was not entered correctly</div>
+                                        <input type="text" name="dateOnSite" id="dateOnSite" class="form-control input-sm" placeholder="Date (YYYY-MM-DD)" ng-model="incident.dateOnSite" ng-change="setDateOnSite()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group"> 
+                                        <div class="error scaleOfCleanUpError hide">Did not choose a status</div>
+                                        <select class="form-control input-sm" id="scaleOfCleanUp" ng-model="incident.scaleOfCleanUp" ng-change="setScaleOfCleanUp()">
+                                            <option>Scale of Cleanup?</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <h5>Graffiti Information</h5>
+                            <div class="form-group">
+                                <div class="error addressError hide">Address was not entered</div>
+                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address" ng-model="incident.address" ng-change="setAddress()">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="error crossStreet1Error hide">Cross Street 1 was not entered</div>
+                                        <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="incident.crossStreet1" ng-change="setCrossStreet1()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group">
+                                        <div class="error crossStreet2Error hide">Cross Street 2 was not entered</div>
+                                        <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="incident.crossStreet2" ng-change="setCrossStreet2()">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="error zipCodeError hide">Zipcode was not entered</div>
+                                        <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zipcode" ng-model="incident.zipCode" ng-change="setZipCode()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group">     
+                                        <div class="error typeOfBuildingError hide">Did not choose a structure type</div>
+                                        <select class="form-control input-sm" id="typeOfBuilding" ng-model="incident.typeOfBuilding" ng-change="setTypeOfBuilding()">
+                                            <option>Structure Type?</option>
+                                            <option>Apartment</option>
+                                            <option>Alley</option>
+                                            <option>Billboard</option>
+                                            <option>Business/Storefront</option>
+                                            <option>House</option>
+                                            <option>Highway</option>
+                                            <option>Public Utility</option>
+                                            <option>Wall</option>
+                                            <option>Sidewalk</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-3 col-sm-3 col-md-3">
+                                    <div class="form-group">
+                                        <div class="error longitudeError hide">Longitude was not entered</div>
+                                        <input type="text" name="longitude" id="longitude" class="form-control input-sm" placeholder="Longitude" ng-model="incident.longitude" ng-change="setLongitude()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-3 col-sm-3 col-md-3"> 
+                                    <div class="form-group">     
+                                        <div class="error latitudeError hide">Latitude was not entered</div>
+                                        <input type="text" name="latitude" id="latitude" class="form-control input-sm" placeholder="Latitude" ng-model="incident.latitude" ng-change="setLatitude()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group">     
+                                        <div class="error damageError hide">Amount of damage was not entered</div>
+                                        <input type="text" name="damage" id="damage" class="form-control input-sm" placeholder="Amount of Damage" ng-model="incident.damage" ng-change="setDamage()">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <h5>Suspect Information</h5>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="error suspectNameError hide">Suspect Name was not entered</div>
+                                        <input type="text" name="suspectName" id="suspectName" class="form-control input-sm" placeholder="Suspect Name" ng-model="incident.suspectName" ng-change="setSuspectName()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group">     
+                                        <div class="error suspectStatusError hide">Did not choose a suspect status</div>
+                                        <select class="form-control input-sm" id="suspectStatus" ng-model="incident.suspectStatus" ng-change="setSuspectStatus()">
+                                            <option>Suspect Status?</option>
+                                            <option>Unknown</option>
+                                            <option>Identified</option>
+                                            <option>In Custody</option>
+                                            <option>Released</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div class="error monikerError hide">Moniker was not entered</div>
+                                        <input type="text" name="moniker" id="moniker" class="form-control input-sm" placeholder="Moniker" ng-model="incident.moniker" ng-change="setMoniker()">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6"> 
+                                    <div class="form-group">
+                                        <div class="error gangNameError hide">Gang Name was not entered</div>
+                                        <input type="text" name="gangName" id="gangName" class="form-control input-sm" placeholder="Gang Name" ng-model="incident.gangName" ng-change="setGangName()">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="submission">
+                                <div class="error submissionError hide">*Please resolve above errors*</div>
+                                <input type="submit" value="Submit" class="btn btn-primary btn-block" ng-model="incident.submit" ng-click="submitIncident()">
+                            </div>
+                            <img class="loading-gif hide" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default center-block" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Incidents</h3>
+                </div>
+                <div class="incident-loading">
+                    <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                </div>
+                <div class="panel-body report-view hide">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th><a href="#">Status</a></th>
+                                <th><a href="#">City Crew ID</a></th>
+                                <th><a href="#">Description</a></th>
+                                <th><a href="#">Moniker</a></th>
+                                <th><a href="#">Date on Site</a></th>
+                                <th><a href="#">Type of Structure</a></th>
+                                <th><a href="#">Scale of Cleanup</a></th>
+                                <th><a href="#">Address</a></th>
+                                <th><a href="#">Zipcode</a></th>
+                                <th><a href="#">Cross Street 1</a></th>
+                                <th><a href="#">Cross Street 2</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="incident in incidents">
+                                <td>{{ incident.status }}</td>
+                                <td>{{ incident.cityCrewId }}</td>
+                                <td>{{ incident.graffitiInformation }}</td>
+                                <td>{{ incident.moniker }}</td>
+                                <td>{{ incident.dateOnSite }}</td>
+                                <td>{{ incident.typeOfBuilding }}</td>
+                                <td>{{ incident.scaleOfCleanUp }}</td>
+                                <td>{{ incident.location.address }}</td>
+                                <td>{{ incident.location.zipCode }}</td>
+                                <td>{{ incident.location.crossStreet1 }}</td>
+                                <td>{{ incident.location.crossStreet2 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

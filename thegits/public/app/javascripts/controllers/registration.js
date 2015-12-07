@@ -5,7 +5,7 @@ angular.module('gitsApp.controllers')
     function($scope, auth) {
         if (!auth.isLoggedIn) {
             window.location.href = '/#/login';
-        } else if (auth.getUserType() !== 'Admin') {
+        } else if (!auth.isAdmin()) {
             window.location.href = '/#/home';
         }
 
