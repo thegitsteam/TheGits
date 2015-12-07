@@ -5,7 +5,7 @@ angular.module('gitsApp.services')
         var supervisor = {};
 
         supervisor.getCityCrewSupervisors = function() {
-            return $http.get('/users/city?isSupervisor=1').success(function(res) {
+            return $http.get('/users/citycrew?isSupervisor=1').success(function(res) {
                 return res;
             });
         };

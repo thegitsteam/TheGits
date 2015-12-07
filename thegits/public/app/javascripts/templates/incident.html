@@ -15,74 +15,46 @@
                         <form role="form">
                             <!-- Incident Record Info-->
                             <h5>Incident Record Information</h5>
-                            <div class="form-group">
-                                <div class="error lawEnforcementEmployeeNumberError hide">Did not enter employee number</div>
-                                <input type="text" name="lawEnforcementEmployeeNumber" id="lawEnforcementEmployeeNumber" class="form-control input-sm" placeholder="Law Enforcement Employee Number" ng-model="" ng-change="">
+                            <div class="form-group"> 
+                                <div class="error statusError hide">Did not choose a status</div>
+                                <select class="form-control input-sm" id="status" ng-model="incident.status" ng-change="setStatus()">
+                                    <option>New</option>
+                                    <option>In Process</option>
+                                    <option>In Litigation</option>
+                                    <option>Resolved</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <div class="error incidentRecordIdError hide">Did not enter incident record ID</div>
-                                <input type="text" name="incidentRecordId" id="incidentRecordId" class="form-control input-sm" placeholder="Incident Record ID" ng-model="" ng-change="">
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-6 col-sm-6 col-md-6">
-                                    <div class="form-group">
-                                        <div class="error dateCreatedError hide">Did not enter date this record was created</div>
-                                        <input type="text" name="dateCreated" id="dateCreated" class="form-control input-sm" placeholder="Date Created" ng-model="" ng-change="">
-                                    </div>
-                                </div>
-                                <div class="col-xs-6 col-sm-6 col-md-6"> 
-                                    <div class="form-group"> 
-                                        <div class="error statusError hide">Did not choose a status</div>
-                                        <select class="form-control input-sm" id="status" ng-model="" ng-change="setStatus()">
-                                            <option>Status?</option>
-                                            <option>New</option>
-                                            <option>In Process</option>
-                                            <option>In Litigation</option>
-                                            <option>Resolved</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <div class="error graffitiInformationError hide">Did not enter a description</div>
+                                <textarea class="form-control input-sm" id="graffitiInformation" placeholder="Enter a description of the graffiti" ng-model="incident.graffitiInformation" ng-change="setGraffitiInformation()"></textarea>
                             </div>
                             <hr>
 
                             <h5>City Crew Information</h5>
                             <div class="form-group">
                                 <div class="error supervisorNameError hide">Supervisor Name was chosen</div>
-                                <select class="form-control input-sm" id="supervisorName" ng-model="" ng-change="setSupervisorName">
-                                    <option>Supervisor Name?</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control input-sm" id="supervisorName" ng-model="incident.supervisorName" ng-change="setSupervisorName()">
+                                    <option>Genaro</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <div class="error cityCrewIdError hide">City Crew ID was not chosen</div>
-                                <select class="form-control input-sm" id="cityCrewId" ng-model="" ng-change="setCityCrewId()">
-                                    <option>City Crew ID?</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <input type="text" name="cityCrewId" id="cityCrewId" class="form-control input-sm" placeholder="City Crew ID" ng-model="incident.cityCrewId" ng-change="setCityCrewId()">
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="error dateOnSiteError hide">Date was not entered correctly</div>
-                                        <input type="text" name="dateOnSite" id="dateOnSite" class="form-control input-sm" placeholder="Date (YYYY-MM-DD)" ng-model="">
+                                        <input type="text" name="dateOnSite" id="dateOnSite" class="form-control input-sm" placeholder="Date (YYYY-MM-DD)" ng-model="incident.dateOnSite" ng-change="setDateOnSite()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group"> 
                                         <div class="error scaleOfCleanupError hide">Did not choose a status</div>
-                                        <select class="form-control input-sm" id="scaleOfCleanup" ng-model="" ng-change="">
+                                        <select class="form-control input-sm" id="scaleOfCleanup" ng-model="incident.scaleOfCleanup" ng-change="setScaleOfCleanup()">
                                             <option>Scale of Cleanup?</option>
                                             <option>1</option>
                                             <option>2</option>
@@ -98,20 +70,20 @@
                             <h5>Graffiti Information</h5>
                             <div class="form-group">
                                 <div class="error addressError hide">Address was not entered</div>
-                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address" ng-model="" ng-change="setAddress()">
+                                <input type="text" name="address" id="address" class="form-control input-sm" placeholder="Address" ng-model="incident.address" ng-change="setAddress()">
                             </div>
 
                             <div class="row">
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="error crossStreet1Error hide">Cross Street 1 was not entered</div>
-                                        <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="report.crossStreet1" ng-change="setCrossStreet1()">
+                                        <input type="text" name="crossStreet1" id="crossStreet1" class="form-control input-sm" placeholder="First Cross Street" ng-model="incident.crossStreet1" ng-change="setCrossStreet1()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group">
                                         <div class="error crossStreet2Error hide">Cross Street 2 was not entered</div>
-                                        <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="report.crossStreet2" ng-change="setCrossStreet2()">
+                                        <input type="text" name="crossStreet2" id="crossStreet2" class="form-control input-sm" placeholder="Second Cross Street" ng-model="incident.crossStreet2" ng-change="setCrossStreet2()">
                                     </div>
                                 </div>
                             </div>
@@ -120,13 +92,13 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="error zipCodeError hide">Zipcode was not entered</div>
-                                        <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zipcode" ng-model="" ng-change="setZipCode()">
+                                        <input type="text" name="zipCode" id="zipCode" class="form-control input-sm" placeholder="Zipcode" ng-model="incident.zipCode" ng-change="setZipCode()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group">     
-                                        <div class="error structureTypeError hide">Did not choose a structure type</div>
-                                        <select class="form-control input-sm" id="structureType" ng-model="" ng-change="setStructureType()">
+                                        <div class="error typeOfBuildingError hide">Did not choose a structure type</div>
+                                        <select class="form-control input-sm" id="typeOfBuilding" ng-model="incident.typeOfBuilding" ng-change="setTypeOfBuilding()">
                                             <option>Structure Type?</option>
                                             <option>Apartment</option>
                                             <option>Alley</option>
@@ -144,19 +116,19 @@
                                 <div class="col-xs-3 col-sm-3 col-md-3">
                                     <div class="form-group">
                                         <div class="error longitudeError hide">Longitude was not entered</div>
-                                        <input type="text" name="longitude" id="longitude" class="form-control input-sm" placeholder="Longitude" ng-model="" ng-change="setLongitude()">
+                                        <input type="text" name="longitude" id="longitude" class="form-control input-sm" placeholder="Longitude" ng-model="incident.longitude" ng-change="setLongitude()">
                                     </div>
                                 </div>
                                 <div class="col-xs-3 col-sm-3 col-md-3"> 
                                     <div class="form-group">     
                                         <div class="error latitudeError hide">Latitude was not entered</div>
-                                        <input type="text" name="latitude" id="latitude" class="form-control input-sm" placeholder="Latitude" ng-model="" ng-change="setLatitude()">
+                                        <input type="text" name="latitude" id="latitude" class="form-control input-sm" placeholder="Latitude" ng-model="incident.latitude" ng-change="setLatitude()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group">     
                                         <div class="error damageError hide">Amount of damage was not entered</div>
-                                        <input type="text" name="damage" id="damage" class="form-control input-sm" placeholder="Amount of Damage" ng-model="" ng-change="setDamage()">
+                                        <input type="text" name="damage" id="damage" class="form-control input-sm" placeholder="Amount of Damage" ng-model="incident.damage" ng-change="setDamage()">
                                     </div>
                                 </div>
                             </div>
@@ -167,13 +139,13 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="error suspectNameError hide">Suspect Name was not entered</div>
-                                        <input type="text" name="suspectName" id="suspectName" class="form-control input-sm" placeholder="Suspect Name" ng-model="" ng-change="setSuspectName()">
+                                        <input type="text" name="suspectName" id="suspectName" class="form-control input-sm" placeholder="Suspect Name" ng-model="incident.suspectName" ng-change="setSuspectName()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group">     
                                         <div class="error suspectStatusError hide">Did not choose a suspect status</div>
-                                        <select class="form-control input-sm" id="suspectStatus" ng-model="" ng-change="setSuspectStatus()">
+                                        <select class="form-control input-sm" id="suspectStatus" ng-model="incident.suspectStatus" ng-change="setSuspectStatus()">
                                             <option>Suspect Status?</option>
                                             <option>Apartment</option>
                                             <option>Alley</option>
@@ -191,13 +163,13 @@
                                 <div class="col-xs-6 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <div class="error monikerError hide">Moniker was not entered</div>
-                                        <input type="text" name="moniker" id="moniker" class="form-control input-sm" placeholder="Moniker" ng-model="" ng-change="setMoniker()">
+                                        <input type="text" name="moniker" id="moniker" class="form-control input-sm" placeholder="Moniker" ng-model="incident.moniker" ng-change="setMoniker()">
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-6 col-md-6"> 
                                     <div class="form-group">
                                         <div class="error gangNameError hide">Gang Name was not entered</div>
-                                        <input type="text" name="gangName" id="gangName" class="form-control input-sm" placeholder="Gang Name" ng-model="" ng-change="setGangName()">
+                                        <input type="text" name="gangName" id="gangName" class="form-control input-sm" placeholder="Gang Name" ng-model="incident.gangName" ng-change="setGangName()">
                                     </div>
                                 </div>
                             </div>
@@ -213,6 +185,41 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default center-block" data-dismiss="modal">Cancel</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Incidents</h3>
+                </div>
+                <div class="incident-loading">
+                    <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+                </div>
+                <div class="panel-body report-view hide">
+                    <table class="table table-bordered table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th><a href="#">Status</a></th>
+                                <th><a href="#">City Crew ID</a></th>
+                                <th><a href="#">Description</a></th>
+                                <th><a href="#">Moniker</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="incident in incidents">
+                                <td>{{ incident.status }}</td>
+                                <td>{{ incident.cityCrewId }}</td>
+                                <td>{{ incident.graffitiInfo }}</td>
+                                <td>{{ incident.moniker }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
