@@ -21,7 +21,7 @@ angular.module('gitsApp.services')
 
         auth.getCurrentUser = function() {
             var token = JSON.parse(auth.getToken());
-            if (token !== null) {
+            if (token) {
                 return token.username;
             } else {
                 return null;
@@ -30,20 +30,28 @@ angular.module('gitsApp.services')
 
         auth.getUserType = function() {
             var token = JSON.parse(auth.getToken());
-            if (token !== null) {
+            if (token) {
                 return token.group;
             } else {
                 return null;
             }
         };
+
+        auth.getEmployeeNumber = function() {
+            var token = JSON.parse(auth.getToken());
+            if (token) {
+                return token.employeeNumber;
+            } else {
+                return null;
+            }
+        };
+
+        auth.isAdmin = function() {
+            return auth.getUserType() === 'Admin';
+        };
         
         auth.isCityCrew = function() {
-            var userType = auth.getUserType();
-            if (userType === 'City') {
-                return true;
-            } else {
-                return false;
-            }
+            return auth.getUserType() === 'City';
         };
 
         // Triangle of DOOOOOOM
@@ -66,7 +74,7 @@ angular.module('gitsApp.services')
         auth.register = function(route, user) {
             return $http.post('/users/' + route, user).success(function() {
                 $http.get('/users').success(function(data) {
-                    window.location = '/';
+                    window.location.href = '/';
                 });
             });
         };

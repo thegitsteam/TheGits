@@ -66,6 +66,20 @@ app.config([
             }
         })
 
+        .state('incident', {
+            url: '/incident',
+            views: {
+                'main-view': {
+                    templateUrl: '/app/javascripts/templates/incident.html',
+                    controller: 'IncidentCtrl'
+                },
+                'navigation-bar': {
+                    templateUrl: 'app/javascripts/templates/shared/navigationbar.html',
+                    controller: 'NavigationBarCtrl'
+                }
+            }
+        })
+
         $urlRouterProvider.otherwise('home');
     }
 ]);
