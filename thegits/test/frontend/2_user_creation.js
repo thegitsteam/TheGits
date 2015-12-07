@@ -35,13 +35,13 @@ test.describe('Test User Creation(as admin)', function() {
 
 	test.it('Should go to homepage', function(done) {
 		driver.get('http://localhost:3000/');
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
+		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/home');
 			done();
 	});
 
 	test.it('Should click to Login page', function(done) {
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/login');
+		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 		done();
 	});
 
@@ -115,8 +115,8 @@ test.describe('Test New Users', function() {
 	});
 
 	test.it('Should go to homepage', function(done) {
-		driver.get('http://54.213.220.101:3000/');
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
+		driver.get('http://localhost:3000/');
+		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/home');
 			done();
 	});
 	
@@ -148,7 +148,7 @@ test.describe('Test New Users', function() {
 		test.it('Should click to Login page', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
-			expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/login');
+			expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 			done();
 		});
 
@@ -172,7 +172,7 @@ test.describe('Test New Users', function() {
 		test.it('Should click to Login page', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
 			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
-			expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/login');
+			expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 			done();
 		});
 		

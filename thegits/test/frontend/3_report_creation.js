@@ -42,8 +42,8 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should go to homepage', function(done) {
-		driver.get('http://54.213.220.101:3000/');
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/home');
+		driver.get('http://localhost:3000/');
+		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/home');
 			done();
 	});
 
@@ -65,7 +65,7 @@ test.describe('Test Create Reports', function() {
 	test.it('Should click to Reports page', function(done) {
 		driver.wait(driver.isElementPresent(webdriver.By.linkText('Create Report')),10000);
 		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/ul/li[1]/a'}).click();
-		expect(driver.getCurrentUrl()).to.eventually.equal('http://54.213.220.101:3000/#/report');
+		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/report');
 		done();
 	});
 
