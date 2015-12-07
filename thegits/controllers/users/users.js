@@ -40,6 +40,10 @@ module.exports.getAcountInfo = function(req,res){
 module.exports.getAllUsers = function(req,res){
 	var userType = req.baseUrl.split('/')[2];
 	var userModel;
+	var query ={};
+	if (req.query){
+		query = req.query;
+	}
 	if (userType == 'admin'){
 		userModel = Admin;
 	}
@@ -48,7 +52,7 @@ module.exports.getAllUsers = function(req,res){
 	}
 	else
 		userModel = Law;
-	userModel.find({isSupervisor:req.query.isSupervisor},function(err,users){
+	userModel.find(query,function(err,users){
 		if(err){
 			res.status(404).send('No users found');
 		}
