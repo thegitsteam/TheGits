@@ -9,7 +9,7 @@ angular.module('gitsApp.services')
                 return res;
             });
         };
-
+        
         report.create = function(data) {
             var report = JSON.stringify(data);
             return $http.post('/reports', report).success(function(data) {

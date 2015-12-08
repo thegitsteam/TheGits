@@ -1,7 +1,5 @@
 <div class="container">
     <div class="row centered-form">
-        <!-- Modal Trigger -->
-        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#incidentModal">Create Incident</button>
         <!-- Modal -->
         <div id="incidentModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -195,51 +193,65 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row centered-form">
-        <div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
-             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Incidents</h3>
-                </div>
-                <div class="incident-loading">
-                    <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
-                </div>
-                <div class="panel-body report-view hide">
-                    <table class="table table-bordered table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th><a href="#">Status</a></th>
-                                <th><a href="#">City Crew ID</a></th>
-                                <th><a href="#">Description</a></th>
-                                <th><a href="#">Moniker</a></th>
-                                <th><a href="#">Date on Site</a></th>
-                                <th><a href="#">Type of Structure</a></th>
-                                <th><a href="#">Scale of Cleanup</a></th>
-                                <th><a href="#">Address</a></th>
-                                <th><a href="#">Zipcode</a></th>
-                                <th><a href="#">Cross Street 1</a></th>
-                                <th><a href="#">Cross Street 2</a></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="incident in incidents">
-                                <td>{{ incident.status }}</td>
-                                <td>{{ incident.cityCrewId }}</td>
-                                <td>{{ incident.graffitiInformation }}</td>
-                                <td>{{ incident.moniker }}</td>
-                                <td>{{ incident.dateOnSite }}</td>
-                                <td>{{ incident.typeOfBuilding }}</td>
-                                <td>{{ incident.scaleOfCleanUp }}</td>
-                                <td>{{ incident.location.address }}</td>
-                                <td>{{ incident.location.zipCode }}</td>
-                                <td>{{ incident.location.crossStreet1 }}</td>
-                                <td>{{ incident.location.crossStreet2 }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span id="modal-button"><button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#incidentModal">Create Incident</button></span>
+            <span id="panelheading-text"><h3>Incidents</h3></span>
         </div>
-    </div>
+        <div class="incident-loading">
+            <img class="loading-gif" src="https://2.bp.blogspot.com/-ndystUcbb1M/VgbHD_q-6GI/AAAAAAAAAIc/y9pivAG7HEI/s1600/loading3.gif">
+        </div>
+        <div class="panel-body report-view hide" id="report-table-text">
+            <table class="table  table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th><a href="#">Status</a></th>
+                        <th><a href="#">City Crew ID</a></th>
+                        <th><a href="#">Description</a></th>
+                        <th><a href="#">Moniker</a></th>
+                        <th><a href="#">Date on Site</a></th>
+                    </tr>
+                </thead>
+                <tbody  ng-repeat="incident in incidents | orderBy: '-dateOnSite'">
+                    <tr data-toggle="collapse" data-target="#moreReport-{{ $index }}" class="accordion-toggle success">
+                        <td>{{ incident.status }}</td>
+                            <td>{{ incident.cityCrewId }}</td>
+                            <td>{{ incident.graffitiInformation }}</td>
+                            <td>{{ incident.moniker }}</td>
+                            <td>{{ incident.dateOnSite }}</td>
+                         
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="hiddenRow">
+                            <div class="accordian-body collapse" id="moreReport-{{ $index }}"> 
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr class="danger">
+                                            <th><a href="#">Type of Structure</a></th>
+                                            <th><a href="#">Scale of Cleanup</a></th>
+                                            <th><a href="#">Address</a></th>
+                                            <th><a href="#">Zipcode</a></th>
+                                            <th><a href="#">Cross Street 1</a></th>
+                                            <th><a href="#">Cross Street 2</a></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="danger">
+                                            <td>{{ incident.typeOfBuilding }}</td>
+                                            <td>{{ incident.scaleOfCleanUp }}</td>
+                                            <td>{{ incident.location.address }}</td>
+                                            <td>{{ incident.location.zipCode }}</td>
+                                            <td>{{ incident.location.crossStreet1 }}</td>
+                                            <td>{{ incident.location.crossStreet2 }}</td>
+                                        </tr> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
 </div>
