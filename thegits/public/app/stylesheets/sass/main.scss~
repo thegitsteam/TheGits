@@ -19,7 +19,8 @@ body {
     border-radius: 3px;
 
     &.panel-default {
-        padding-bottom: 25px;
+        padding-bottom: 50px;
+        background-color: rgba(245, 245, 245, 0.4);
     }
 }
 
@@ -52,20 +53,5 @@ body {
 }
 
 .loading-gif {
-    display: block;
-    margin: 0 auto;
     width: 50px;
-}
-
-#modal-button {
-    button {
-        margin-top: 5px;
-    }
-}
-
-#panelheading-text {
-    h3 {
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
 }

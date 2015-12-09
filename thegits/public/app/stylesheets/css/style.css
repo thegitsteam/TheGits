@@ -4760,8 +4760,7 @@ html, body {
 .panel {
   border-radius: 3px; }
 .panel.panel-default {
-  padding-bottom: 50px;
-  background-color: rgba(245, 245, 245, 0.4); }
+  padding-bottom: 25px; }
 
 .form-control {
   border-radius: 3px; }
@@ -4784,7 +4783,16 @@ html, body {
   box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px; }
 
 .loading-gif {
+  display: block;
+  margin: 0 auto;
   width: 50px; }
+
+#modal-button button {
+  margin-top: 5px; }
+
+#panelheading-text h3 {
+  margin-top: 10px;
+  margin-bottom: 5px; }
 
 /* Navigation Bar */
 .navbar-brand {
@@ -4796,14 +4804,7 @@ html, body {
   padding-top: 5px; }
 
 /* Reports */
-.report-view {
-  text-align: left;
+#report-table-text {
   font-size: 14px; }
-.report-view .table {
-  table-layout: fixed;
-  background-color: white; }
-.report-view .table td {
-  white-space: normal;
-  overflow: auto; }
 
 /*# sourceMappingURL=style.css.map */

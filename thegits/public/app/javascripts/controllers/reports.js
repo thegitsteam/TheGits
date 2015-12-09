@@ -121,13 +121,13 @@ angular.module('gitsApp.controllers')
                     $('.form-control').val('');
                 });
             }
-        };
+        }; 
 
         $scope.toggleLoading = function() {
             $('.submission').toggleClass('hide');
             $('.loading-gif').toggleClass('hide');
         };
-
+        
         // Get all reports upon load
         if ($scope.isAuthorizedToSeeReports()) {
             report.getAll().success(function(data) {
@@ -136,5 +136,6 @@ angular.module('gitsApp.controllers')
                 $('.report-view').toggleClass('hide');
             });
         }
+    
     }
 ]);
