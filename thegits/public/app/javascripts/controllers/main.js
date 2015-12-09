@@ -1,7 +1,8 @@
 angular.module('gitsApp.controllers')
 .controller('MainCtrl', [
     '$scope',
-    function($scope) {
-        $scope.test = 'Hello World!';
+    'auth',
+    function($scope, auth) {
+        $scope.firstName = auth.getFirstName();
     }
 ]);
