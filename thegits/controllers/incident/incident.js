@@ -3,55 +3,26 @@ var mongoose = require('mongoose');
 var ObjectId = require('mongoose').Types.ObjectId; 
 
 var Incident = require('../../models/incident/incident');
-
+/*Mongoose actually validates input for the model no need to check for each attribute*/
 module.exports.createIncident = function(req,res){
 	
-    var incidentData = {};
-    try{
-            locationData = {
-            address: req.body.address,
-            zip: req.body.zip,
-            crossStreet1: req.body.crossStreet1,
-            crossStreet2: req.body.crossStreet2
-            };
-            
-            gpsData = {
-                loc: req.body.gpsCoord
-            };
+    var incidentData = req.body;
+    if(incidentData){
+    	var newincident = new Incident(incidentData);
 
-            incidentData = {
-            cityCrewId: req.body.cityCrewId,
-            lawEnfEmpNr: req.body.lawEnfEmpNr,
-            cityCrewSupervisor: req.body.cityCrewSupervisor,
-            lawEnfSupervisor: req.body.lawEnfSupervisor,
-            graffitiInfo: req.body.graffitiInfo,
-            dateOnSite: req.body.dateOnSite,
-            scale: req.body.scale,
-            typeOfBuilding: req.body.typeOfBuilding,
-            location: locationData,
-            gpsCoord: gpsData,
-            moniker: req.body.moniker,
-            images: req.body.image,
-            suspects: req.body.suspects,
-            status: req.body.status
-            };
-
-    }
-    catch(err){
-        res.sendStatus(400);
-    }
-
-	var newincident = new Incident(incidentData);
-
-	newincident.save( function(error, data){
-    if(error){
-        console.log(error);
-        res.status(400).json(error);
+    	newincident.save( function(error, data){
+        if(error){
+            console.log(error);
+            res.status(400).json(error);
+        }
+        else{
+            res.send(data);
+        }
+    	});
     }
     else{
-        res.json(data);
+        res.status(400).send('No Body Sent');
     }
-	});
 
 };
 
@@ -69,49 +40,40 @@ module.exports.getIncident = function(req,res){
 module.exports.deleteIncident = function(req,res){
 	if(req.params.id){
 		Incident.remove({ '_id': req.params.id }, function(err) {
-    		if (!err) {
-            	res.send('deleted');
-    		}
-    		else {
-            	res.json(err);
-    		}
-		});	
+            if(err){
+                console.log(err);
+                res.send()
+            }
+        });	
 	}
 	else res.send('invalid id');
 };
-
 module.exports.modifyIncident = function(req,res){
-	if(req.params.id){
-		Incident.findOne({ '_id': req.params.id }, function(error, incident) {
-    	if (error) {
-        	res.status(400).send('Incident not found');
-    	} 
-    	else {
-            console.log(req.body.suspects);
-            var suspectId = convertToObjectId(req.body.suspects);
-            console.log(suspectId);
-        	incident.suspects = suspectId;
-        	incident.save(function(err, list) {
-        		if(err) {
-            		res.status(404).send('Not found');
-                    console.log(err);
-        		}
-        		else {
-        			res.send(incident.populate('suspects'));
-        		}
-        	});
-    	}
-		});
-	}
-	else {
-		res.send('invalid id');
-	} 
-		
+    if(req.params.id&&req.body){
+        Incident.findOneAndUpdate({'_id':new ObjectId(req.params.id)},req.body,function(err,incident){
+            if(err){
+                console.log(err);
+                res.status('400').send('Could not update Incident');
+            }
+            else{
+                console.log(req.body.suspects);
+                console.log(incident);
+                res.send(incident);
+            }
+        });
+    }
+    else{
+        res.status(400).send('No Body Sent');
+    }
 };
 module.exports.getAllIncidents = function(req,res){
-    Incident.find({},function(err,incidents){
-        if(err){
-            res.status(404).send('Incidents not found');
+    Incident
+    .find()
+    .populate('suspects')
+    .exec(function(err,incidents){
+        if (err){
+            console.log(err);
+            res.sendStatus(404);
         }
         else{
             res.send(incidents);

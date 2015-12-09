@@ -18,6 +18,9 @@ module.exports.getAcountInfo = function(req,res){
 		 userInfo.surname = req.user.surname;
 		 userInfo.email = req.user.email;
 		 userInfo.supervisor = req.user.customData.isSupervisor;
+		 if(req.user.customData.employeeNumber){
+		 	userInfo.employeeNumber = req.user.customData.employeeNumber;
+		 }
 	}
 	catch(err){
 		res.sendStatus(400);
@@ -33,6 +36,54 @@ module.exports.getAcountInfo = function(req,res){
 		}
 		res.send(userInfo);
 	});
+};
+module.exports.getAllUsers = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	var query ={};
+	if (req.query){
+		query = req.query;
+	}
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	userModel.find(query,function(err,users){
+		if(err){
+			res.status(404).send('No users found');
+		}
+		else{
+			res.send(users);
+		}
+	});
+};
+module.exports.getUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	if(req.params.id){
+		getMongoUser(userModel,req.params.id,function(err,user){
+			if(err){
+				console.log(err);
+				res.status(404).send('User Not Found');
+			}
+			else{
+				res.json(user);
+			}
+		});
+	}
+	else res.status(400).send('No Id');
 };
 module.exports.createAccount = function(req,res) {
 	if(!req.account) res.sendStatus(400);
@@ -55,6 +106,47 @@ module.exports.createAccount = function(req,res) {
 		res.status(400).send(err.userMessage);
 	});	
 };
+module.exports.deleteUser = function(req,res){
+	var userType = req.baseUrl.split('/')[2];
+	var userModel;
+	var client =  req.app.get('stormpathClient');
+	if (userType == 'admin'){
+		userModel = Admin;
+	}
+	else if (userType == 'citycrew'){
+		userModel = City;
+	}
+	else
+		userModel = Law;
+	if(req.params.id){
+		
+		getMongoUser(userModel,req.params.id,function(err,account){
+			if(err){
+				console.log(err);
+				res.sendStatus(404);
+			}
+			else{
+				getStormpathAccountByHref(client,account.href)
+				.then(function(stormpathAccount){
+					console.log(stormpathAccount);
+					stormpathAccount.delete();
+					res.send(account)
+
+				})
+				.fail(function(err){
+					console.log(err);
+					res.sendStatus(404);
+				});
+
+			}
+		});
+	}
+	else{
+		res.sendStatus(400);
+	}
+
+};
+
 function getAppGroups(options,application,callback){
 	application.getGroups(options,function(err,groups){
 		callback(err,groups.items[0]);
@@ -155,90 +247,8 @@ createMongoUser = function(account,callback){
     });
 
 };
-module.exports.getUser = function(req,res){
-	var userType = req.baseUrl.split('/')[2];
-	var userModel;
-	if (userType == 'admin'){
-		userModel = Admin;
-	}
-	else if (userType == 'citycrew'){
-		userModel = City;
-	}
-	else
-		userModel = Law;
-	if(req.params.id){
-		getMongoUser(userModel,req.params.id,function(err,user){
-			if(err){
-				console.log(err);
-				res.status(404).send('User Not Found');
-			}
-			else{
-				res.json(user);
-			}
-		});
-	}
-	else res.status(400).send('No Id');
-};
-module.exports.getAllUsers = function(req,res){
-	var userType = req.baseUrl.split('/')[2];
-	var userModel;
-	if (userType == 'admin'){
-		userModel = Admin;
-	}
-	else if (userType == 'citycrew'){
-		userModel = City;
-	}
-	else
-		userModel = Law;
-	userModel.find({},function(err,users){
-		if(err){
-			res.status(404).send('No users found');
-		}
-		else{
-			res.json(users);
-		}
-	});
-};
-module.exports.deleteUser = function(req,res){
-	var userType = req.baseUrl.split('/')[2];
-	var userModel;
-	var client =  req.app.get('stormpathClient');
-	if (userType == 'admin'){
-		userModel = Admin;
-	}
-	else if (userType == 'citycrew'){
-		userModel = City;
-	}
-	else
-		userModel = Law;
-	if(req.params.id){
-		
-		getMongoUser(userModel,req.params.id,function(err,account){
-			if(err){
-				console.log(err);
-				res.sendStatus(404);
-			}
-			else{
-				getStormpathAccountByHref(client,account.href)
-				.then(function(stormpathAccount){
-					console.log(stormpathAccount);
-					stormpathAccount.delete();
-					res.send(account)
 
-				})
-				.fail(function(err){
-					console.log(err);
-					res.sendStatus(404);
-				});
 
-			}
-		});
-	}
-	else{
-		res.sendStatus(400);
-	}
-
-};
 
 function getStormpathAccountByHref(client,href){
 	return Q.Promise(function(resolve,reject,retry){

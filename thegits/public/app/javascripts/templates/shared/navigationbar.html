@@ -14,20 +14,16 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
+            <ul class="nav navbar-nav" id="nav-custom-font">
+                <li class="dropdown" ng-show="isLoggedIn()">
                     <a href="/#/report" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         Reports
                     </a>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Incidents <span class="caret"></span>
+                <li class="dropdown" ng-show="isAuthorizedToSeeIncidents()">
+                    <a href="/#/incident" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="isLoggedIn()">
+                        Incidents
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">View Incidents</a></li>
-                        <li><a href="#">Update Incidents</a></li>
-                    </ul>
                 </li>
                 <li class="dropdown" ng-model="navigationbar.isAdmin" ng-show="isAdmin()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -38,12 +34,14 @@
                     </ul>
                 </li>
             </ul>
-            <div class="navbar-text navbar-right" ng-hide="isLoggedIn()">
-                <a href="/#/login">Login</a>
-            </div>
-            <div class="navbar-text navbar-right" ng-show="isLoggedIn()">
-                Signed in as <em>{{ username }}</em> - {{ userType }}
-                (<a href="#" ng-model="logout" ng-click="logout()">Logout</a>)
+            <div id="nav-custom-font">
+                <div class="navbar-text navbar-right" ng-hide="isLoggedIn()">
+                    <a href="/#/login">Login</a>
+                </div>
+                <div class="navbar-text navbar-right" ng-show="isLoggedIn()">
+                    Signed in as <em>{{ username }}</em> - {{ userType }}
+                    (<a href="#" ng-model="logout" ng-click="logout()">Logout</a>)
+                </div>
             </div>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
