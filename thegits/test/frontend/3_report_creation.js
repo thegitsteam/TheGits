@@ -23,11 +23,12 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys(crossTwo);
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
 		driver.sleep(4000);
-		expect(driver.findElement(webdriver.By.xpath('/html/body/div[2]/div[2]/div/div/div/div[3]/table/tbody/tr[1]/td[2]')).getText()).to.eventually.equal(description);
-		expect(driver.findElement(webdriver.By.xpath('/html/body/div[2]/div[2]/div/div/div/div[3]/table/tbody/tr[1]/td[4]')).getText()).to.eventually.equal(address);
-		expect(driver.findElement(webdriver.By.xpath('/html/body/div[2]/div[2]/div/div/div/div[3]/table/tbody/tr[1]/td[5]')).getText()).to.eventually.equal(zipcode);
-		expect(driver.findElement(webdriver.By.xpath('/html/body/div[2]/div[2]/div/div/div/div[3]/table/tbody/tr[1]/td[6]')).getText()).to.eventually.equal(crossOne);
-		expect(driver.findElement(webdriver.By.xpath('/html/body/div[2]/div[2]/div/div/div/div[3]/table/tbody/tr[1]/td[7]')).getText()).to.eventually.equal(crossTwo);
+		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[2]')).getText()).to.eventually.equal(description);
+		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[3]')).getText()).to.eventually.equal(address);
+		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[4]')).getText()).to.eventually.equal(zipcode);
+		//expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[2]')).getText()).to.eventually.equal(crossOne);
+		//expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[3]')).getText()).to.eventually.equal(crossTwo);
+		driver.findElement({xpath: '//*[@id="report-table-text"]/table/tbody[1]/tr[1]'}).click();
 	}
 
 	test.before(function() {
@@ -49,7 +50,7 @@ test.describe('Test Create Reports', function() {
 
 	test.it('Logging back in as admin...', function(done) {
 		driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
-		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+		driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 		driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('//*[@id="username"]')), 10000);
 		driver.findElement({xpath: '//*[@id="username"]'}).sendKeys('thistest@testthis.com')
 		driver.findElement({xpath: '//*[@id="password"]'}).sendKeys('Testing1');
@@ -70,7 +71,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -80,7 +81,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -90,7 +91,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -100,7 +101,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -110,7 +111,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -120,7 +121,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 
@@ -130,7 +131,7 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click Create Report', function(done){
-		driver.findElement({xpath: '/html/body/div[2]/div[1]/div/button'}).click();
+		driver.findElement({xpath: '//*[@id="modal-button"]/button'}).click();
 		done();
 	});
 

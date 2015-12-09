@@ -40,7 +40,7 @@ test.describe('Test User Creation(as admin)', function() {
 	});
 
 	test.it('Should click to Login page', function(done) {
-		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+		driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 		done();
 	});
@@ -123,7 +123,7 @@ test.describe('Test New Users', function() {
 	test.describe('Testing Admin...', function() {
 		test.it('Should click to Login page', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
-			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+			driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 			done();
 		});
 
@@ -140,14 +140,14 @@ test.describe('Test New Users', function() {
 	test.describe('Testing CityCrew...', function() {
 		test.it('Should logout', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
-			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
+			driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[2]/a'}).click();
 			driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
 			done();
 		});
 
 		test.it('Should click to Login page', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
-			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+			driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 			expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 			done();
 		});
@@ -164,14 +164,14 @@ test.describe('Test New Users', function() {
 	test.describe('Testing Law...', function() {
 		test.it('Should logout', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Logout')),10000,'Check login credentials');
-			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[2]/a'}).click();
+			driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[2]/a'}).click();
 			driver.wait(webdriver.until.elementLocated(webdriver.By.xpath('/html/body/div[2]/div/div/div/div/div/img')),10000,'Check login credentials');
 			done();
 		});
 
 		test.it('Should click to Login page', function(done) {
 			driver.wait(driver.isElementPresent(webdriver.By.linkText('Login')),10000,'Check login credentials');
-			driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+			driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 			expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 			done();
 		});

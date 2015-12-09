@@ -24,7 +24,7 @@ test.describe('Test User Login', function(){
 	});
 				
 	test.it('Should click to Login page', function(done) {
-		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/div[1]/a'}).click();
+		driver.findElement({xpath: '//*[@id="nav-custom-font"]/div[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/login');
 		done();
 	});
