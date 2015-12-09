@@ -23,8 +23,13 @@ angular.module('gitsApp.services')
             var token = JSON.parse(auth.getToken());
             if (token) {
                 return token.username;
-            } else {
-                return null;
+            }
+        };
+
+        auth.getFirstName = function() {
+            var token = JSON.parse(auth.getToken());
+            if (token) {
+                return token.givenName;
             }
         };
 
@@ -32,8 +37,6 @@ angular.module('gitsApp.services')
             var token = JSON.parse(auth.getToken());
             if (token) {
                 return token.group;
-            } else {
-                return null;
             }
         };
 
@@ -41,8 +44,6 @@ angular.module('gitsApp.services')
             var token = JSON.parse(auth.getToken());
             if (token) {
                 return token.employeeNumber;
-            } else {
-                return null;
             }
         };
 
