@@ -37,7 +37,7 @@ var user = {
 describe('Test Law', function() {
 	describe('Law creation', function() {
 		it('Creating a new law user should return 201', function(done) {
-			var req = request(url).post('/users/admin');
+			var req = request(url).post('/users/law');
 			agent.attachCookies(req);
 			req.send(user)
 			.expect(201)
@@ -48,7 +48,7 @@ describe('Test Law', function() {
 		});
 
 		it('Creating an already existing law user should return 400', function(done) {
-			var req = request(url).post('/users/admin');
+			var req = request(url).post('/users/law');
 			agent.attachCookies(req);
 			req.send(user)
 			.expect(400)
