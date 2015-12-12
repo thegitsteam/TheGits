@@ -22,13 +22,14 @@ test.describe('Test Create Reports', function() {
 		driver.findElement({xpath: '//*[@id="crossStreet1"]'}).sendKeys(crossOne);
 		driver.findElement({xpath: '//*[@id="crossStreet2"]'}).sendKeys(crossTwo);
 		driver.findElement({xpath: '//*[@id="reportingModal"]/div/div/div[2]/form/div[12]/input'}).click();
-		driver.sleep(4000);
+		//driver.sleep(4000);
+		driver.wait(webdriver.until.stalenessOf(driver.findElement({xpath: '/html/body/div[3]'})),10000);
+		driver.findElement({xpath: '//*[@id="report-table-text"]/table/tbody[1]/tr[1]'}).click();
 		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[2]')).getText()).to.eventually.equal(description);
 		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[3]')).getText()).to.eventually.equal(address);
 		expect(driver.findElement(webdriver.By.xpath('//*[@id="report-table-text"]/table/tbody/tr[1]/td[4]')).getText()).to.eventually.equal(zipcode);
-		//expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[2]')).getText()).to.eventually.equal(crossOne);
-		//expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[3]')).getText()).to.eventually.equal(crossTwo);
-		driver.findElement({xpath: '//*[@id="report-table-text"]/table/tbody[1]/tr[1]'}).click();
+		expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[2]')).getText()).to.eventually.equal(crossOne);
+		expect(driver.findElement(webdriver.By.xpath('//*[@id="moreReport-0"]/table/tbody/tr/td[3]')).getText()).to.eventually.equal(crossTwo);
 	}
 
 	test.before(function() {
@@ -64,8 +65,8 @@ test.describe('Test Create Reports', function() {
 	});
 
 	test.it('Should click to Reports page', function(done) {
-		driver.wait(driver.isElementPresent(webdriver.By.linkText('Create Report')),10000);
-		driver.findElement({xpath: '//*[@id="bs-example-navbar-collapse-1"]/ul/li[1]/a'}).click();
+		driver.wait(driver.isElementPresent(webdriver.By.linkText('Reports')),10000);
+		driver.findElement({xpath: '//*[@id="nav-custom-font"]/li[1]/a'}).click();
 		expect(driver.getCurrentUrl()).to.eventually.equal('http://localhost:3000/#/report');
 		done();
 	});
