@@ -22,10 +22,7 @@ test.describe('Test Create Incidents', function() {
 		driver.wait(driver.isElementPresent(webdriver.By.className('modal-open')),10000);
 		driver.findElement({xpath: path}).click();
 		driver.findElement({xpath: '//*[@id="graffitiInfo"]'}).sendKeys(description);
-		try{
 		driver.findElement({xpath: '//*[@id="supervisorName"]/option['+(Math.floor(Math.random() * 7) + 1)+']'}).click();
-		}catch(error){
-		console.log('FAIL');}
 		driver.findElement({xpath: '//*[@id="cityCrewId"]'}).sendKeys(id);
 		driver.findElement({xpath: '//*[@id="dateOnSite"]'}).sendKeys(date);
 		driver.findElement({xpath: '//*[@id="scaleOfCleanUp"]/option['+(Math.floor(Math.random() * 7) + 3)+']'}).click();

@@ -22,7 +22,6 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "chai-as-promised": "^5.1.0",
-    "chai-webdriver": "^1.1.1",
     "grunt": "^0.4.5",
     "selenium-webdriver": "^2.48.2",
     "superagent": "^1.4.0",
