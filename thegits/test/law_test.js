@@ -31,7 +31,7 @@ var user = {
 	"password" : "Supertest1",
 	"isSupervisor" : true,
 	"employeeTitle" : "Test",
-	"employeeNumber" : 69
+	"employeeNumber" : 93
 };
 
 describe('Test Law', function() {

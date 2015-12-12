@@ -31,13 +31,13 @@ var user = {
 	"password" : "Supertest1",
 	"isSupervisor" : true,
 	"employeeTitle" : "Test",
-	"employeeNumber" : 69
+	"employeeNumber" : 91
 };
 
 describe('Test Citycrew', function() {
 	describe('Citycrew creation', function() {
 		it('Creating a new citycrew should return 201', function(done) {
-			var req = request(url).post('/users/admin');
+			var req = request(url).post('/users/citycrew');
 			agent.attachCookies(req);
 			req.send(user)
 			.expect(201)
@@ -48,7 +48,7 @@ describe('Test Citycrew', function() {
 		});
 
 		it('Creating an already existing citycrew should return 400', function(done) {
-			var req = request(url).post('/users/admin');
+			var req = request(url).post('/users/citycrew');
 			agent.attachCookies(req);
 			req.send(user)
 			.expect(400)

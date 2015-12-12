@@ -31,7 +31,7 @@ var user = {
 	"password" : "Supertest1",
 	"isSupervisor" : true,
 	"employeeTitle" : "Test",
-	"employeeNumber" : 69
+	"employeeNumber" : 90
 };
 
 describe('Test Admin', function() {
