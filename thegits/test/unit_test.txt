@@ -1,0 +1,55 @@
+
+
+  Login authentication
+    ✓ Login without credentials should return 400 (402ms)
+    ✓ Login with valid credentials should return 200 (393ms)
+    ✓ Login with invalid credentials should return 400 (388ms)
+
+  Test Routes
+    /
+      ✓ POST should return 404
+      ✓ GET should return 200
+      ✓ PUT should return 404
+      ✓ DELETE should return 404
+    /login
+      ✓ POST should return 200 (198ms)
+      ✓ GET should return 200 (116ms)
+      ✓ PUT should return 404
+      ✓ DELETE should return 404
+    /users/admin
+      ✓ POST should return 400 (1914ms)
+      ✓ GET should return 200 (1474ms)
+      ✓ PUT should return 404 (1024ms)
+      ✓ DELETE should return 404 (1026ms)
+    /users/law
+      ✓ POST should return 400 (1927ms)
+      ✓ GET should return 200 (1354ms)
+      ✓ PUT should return 404 (937ms)
+      ✓ DELETE should return 404 (1222ms)
+    /users/citycrew
+      ✓ POST should return 400 (1837ms)
+      ✓ GET should return 200 (1475ms)
+      ✓ PUT should return 404 (1064ms)
+      ✓ DELETE should return 404 (1198ms)
+
+  Test Admin
+    Admin creation
+      ✓ Creating a new admin should return 201 (2507ms)
+      ✓ Creating an already existing admin should return 400 (1826ms)
+      ✓ Login with new admin should return 200 (784ms)
+
+  Test Citycrew
+    Citycrew creation
+      ✓ Creating a new citycrew should return 201 (2300ms)
+      ✓ Creating an already existing citycrew should return 400 (1867ms)
+      ✓ Login with new citycrew should return 200 (682ms)
+
+  Test Law
+    Law creation
+      ✓ Creating a new law user should return 201 (2566ms)
+      ✓ Creating an already existing law user should return 400 (1671ms)
+      ✓ Login with new law user should return 200 (791ms)
+
+
+  32 passing (36s)
+

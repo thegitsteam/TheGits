@@ -1,0 +1,145 @@
+
+
+  Test User Login
+
+    ✓ Should go to homepage (444ms)
+
+    ✓ Should click to Login page (350ms)
+
+    ✓ Should log in with valid credentials (234ms)
+
+    ✓ Should return to home page (1594ms)
+
+  Test User Creation(as admin)
+
+    ✓ Should go to homepage (487ms)
+
+    ✓ Should click to Login page (360ms)
+
+    ✓ Should log in with valid credentials (233ms)
+
+    ✓ Should return to home page (1500ms)
+    Testing Admin creation...
+
+      ✓ Should click to User Creation page (1306ms)
+
+      ✓ Should create admin (4862ms)
+    Testing CityCrew creation...
+
+      ✓ Should click to User Creation page (210ms)
+
+      ✓ Should create CityCrew (5250ms)
+    Testing Law creation...
+
+      ✓ Should click to User Creation page (224ms)
+
+      ✓ Should create Law (4908ms)
+
+  Test New Users
+
+    ✓ Should go to homepage (470ms)
+    Testing Admin...
+
+      ✓ Should click to Login page (165ms)
+
+      ✓ Should login with new admin (3364ms)
+    Testing CityCrew...
+
+      ✓ Should logout (465ms)
+
+      ✓ Should click to Login page (108ms)
+
+      ✓ Should login with new CityCrew (207ms)
+    Testing Law...
+
+      ✓ Should logout (3373ms)
+
+      ✓ Should click to Login page (102ms)
+
+      ✓ Should login with new Law (198ms)
+
+  Test Create Reports
+
+    ✓ Should go to homepage (501ms)
+
+    ✓ Logging back in as admin... (587ms)
+
+    ✓ Should return to home page (2631ms)
+
+    ✓ Should click to Reports page (106ms)
+
+    ✓ Should click Create Report (169ms)
+
+    ✓ Should Create a Test Report(Apartment) (12184ms)
+
+    ✓ Should click Create Report (124ms)
+
+    ✓ Should Create a Test Report(Alley) (12278ms)
+
+    ✓ Should click Create Report (123ms)
+
+    ✓ Should Create a Test Report(Billboard) (12303ms)
+
+    ✓ Should click Create Report (107ms)
+
+    ✓ Should Create a Test Report(Business/Storefront) (12174ms)
+
+    ✓ Should click Create Report (131ms)
+
+    ✓ Should Create a Test Report(House) (12281ms)
+
+    ✓ Should click Create Report (114ms)
+
+    ✓ Should Create a Test Report(Highway) (12160ms)
+
+    ✓ Should click Create Report (115ms)
+
+    ✓ Should Create a Test Report(Public Utility) (12251ms)
+
+
+  41 passing (2m)
+
+
+
+
+  Test Create Incidents
+
+    ✓ Should go to homepage (428ms)
+
+    ✓ Logging back in as admin... (749ms)
+
+    ✓ Should return to home page (4971ms)
+
+    ✓ Should click to Incidents page (111ms)
+
+    ✓ Should click Create Incident (170ms)
+
+    ✓ Should Create a Test Incident (8184ms)
+
+    ✓ Should click Create Incident (213ms)
+
+    ✓ Should Create a Test Incident (8604ms)
+
+    ✓ Should click Create Incident (199ms)
+
+    ✓ Should Create a Test Incident (8523ms)
+
+    ✓ Should click Create Incident (337ms)
+
+    ✓ Should Create a Test Incident (8444ms)
+
+    ✓ Should click Create Incident (216ms)
+
+    ✓ Should Create a Test Incident (8551ms)
+
+    ✓ Should click Create Incident (203ms)
+
+    ✓ Should Create a Test Incident (8559ms)
+
+    ✓ Should click Create Incident (210ms)
+
+    ✓ Should Create a Test Incident (8429ms)
+
+
+  18 passing (1m)
+
